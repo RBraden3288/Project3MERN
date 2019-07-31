@@ -11,6 +11,7 @@ class App extends Component {
           {/* element from react-router-dom that requires two parameters
           path with the URL extension AND with the exact attribute of the component */}
           <Route path="/" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
         </Router>
       </div>
     )

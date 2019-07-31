@@ -1,4 +1,5 @@
-// import React from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 // This is the form the resident will use to fill out their needs
 // all the other components you want to import will go into here
