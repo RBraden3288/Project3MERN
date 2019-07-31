@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import HelloWorld from "../src/pages/Login"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from "../src/pages/Login"
 
-function App() {
-  
+class App extends Component {
+  render() {
     return (
       <div>
-        <HelloWorld />
+        <Router>
+          {/* element from react-router-dom that requires two parameters
+          path with the URL extension AND with the exact attribute of the component */}
+          <Route path="/" exact component={Login} />
+        </Router>
       </div>
     )
+
+  }
   
 }
 export default App;

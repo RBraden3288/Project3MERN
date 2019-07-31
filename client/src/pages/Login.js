@@ -1,11 +1,17 @@
 import React from 'react';
+import NavigationBar from '../components/Navbar/';
+import CarouselRS from '../components/Carousel';
+import Grid from '../components/Login_SignUpGrid';
 
-function HelloWorld() {
+const Login = (props) => {
     return (
         <div>
-            <h1>Hello World!</h1>
+            <NavigationBar />
+            <CarouselRS />
+            <br />
+            <Grid />
         </div>
     )
 }
 
-export default HelloWorld;
+export default Login;
