@@ -1,3 +1,5 @@
+<!-- WE EVENTUALLY PROBABLY WANT TO DELETE THIS ONE -->
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
