@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -12,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-export default class NavigationBar extends React.Component {
+export default class UserNavBar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +31,7 @@ export default class NavigationBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Name of our App</NavbarBrand>
+          <NavbarBrand href="/">Neighbor Favors</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -39,18 +40,18 @@ export default class NavigationBar extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  View Our Work
+                  Menu
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <NavLink href="https://github.com/RBraden3288/Project3MERN" target="blank">GitHub</NavLink>
+                    <Link to="/requestform">Submit a request</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink href="/" target="blank">Heroku</NavLink>
+                    <Link to={"/dashboard/" + ["DATABASENAME.USERSID"]}>View requests</Link>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Contact Us!
+                    Logout
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
