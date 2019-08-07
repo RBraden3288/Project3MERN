@@ -4,11 +4,11 @@
 var mongoose = require("mongoose");
 const db = require("../models");
 
-// Is there something that I should call it in order to call both users/requests
-// Is what I have currently existing fine?
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db"
+);
 
-const userSeed = [
+const clientSeed = [
   {
     firstName: "Siberyan",
     lastName: "Husky",
@@ -17,22 +17,28 @@ const userSeed = [
     neighborhood: "Sunset",
     bio: "A regular human bean",
     photoUrl: "https://tinypic.com/f",
+    residenceType: "house",
+    security: "key",
+    attendant: false,
     date: Date()
   },
   {
-    firstName: "Srirachel",
-    lastName: "Sauce",
-    email: "hellaspicy@gmail.com",
-    password: "N0tTapat!o",
-    bio:
-      "I actually know how to recycle. Down for any task except for feeding rodents.",
-    photoUrl: "https://photobucket.com/yum",
+    firstName: "Drew",
+    lastName: "Hermit",
+    email: "dhermit@gmail.com",
+    password: "Pa$$word",
+    neighborhood: "SOMA",
+    bio: "A lean, clean, human bean",
+    photoUrl: "https://images.google.com",
+    residenceType: "house",
+    security: "key",
+    attendant: false,
     date: Date()
   }
 ];
 
-db.User.remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
+db.Client.remove({})
+  .then(() => db.Client.collection.insertMany(clientSeed))
   .then(data => {
     console.log(data.result.n + " user inserted!");
     process.exit(0);

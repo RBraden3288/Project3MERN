@@ -1,11 +1,8 @@
-// SCHEMA
-// ACTION ITEMS
-// Rachel! Just making sure this was here bc it wasn't in our structure before - feel free to change naming, etc.
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+// Update to include residence type, security.
+const clientSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true },
@@ -13,9 +10,12 @@ const userSchema = new Schema({
   neighborhood: String,
   bio: String,
   photoUrl: String,
+  residenceType: String,
+  security: String,
+  attendant: false,
   date: { type: Date, default: Date.now }
 });
 
-const User = mongoose.model("User", userSchema);
+const Client = mongoose.model("Client", clientSchema);
 
-module.exports = User;
+module.exports = Client;
