@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Have a boolean that defines whether they're an attendant or not. Will do the same for client.
-// If we're going to do a blurb that defines their specialties, I'll have to update the schema for that.
-// Won't require them to fill out their residence type/security (unless they also intend on beeing a client)
 const attendantSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -21,3 +18,7 @@ const attendantSchema = new Schema({
 const Attendant = mongoose.model("Attendant", attendantSchema);
 
 module.exports = Attendant;
+
+// Have a boolean that defines whether they're an attendant or not. Will do the same for client.
+// If we're going to do a blurb that defines their specialties, I'll have to update the schema for that.
+// Won't require them to fill out their residence type/security (unless they also intend on beeing a client)
