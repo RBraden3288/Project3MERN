@@ -5,13 +5,31 @@ const Schema = mongoose.Schema;
 // Tasks will encompass indoor/outdoor. Need to see how React handles forms and how that affects Mongoose.
 // Separate the date by start date & end date. Don't require an end date b/c they could want services for same-day only.
 const requestsSchema = new Schema({
-  client: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client"
+  tasks: {
+    startDate: "",
+    endDate: "",
+    dust: false,
+    vaccuum: false,
+    temp: false,
+    timers: false,
+    mail: false,
+    packages: false,
+    yardwork: false,
+    trash: false,
+    moveCar: false,
+    moveMC: false,
+    moveMP: false,
+    moveOS: false,
+    playCat: false,
+    feedCat: false,
+    litter: false,
+    feedCritter: false,
+    cleanCritTank: false,
+    feedFish: false,
+    cleanFishTank: false
   },
-  tasks: { type: Array, required: true },
-  startDate: { type: String, required: true },
-  endDate: String,
+  startDate: { type: Date, required: true },
+  endDate: { type: Date },
   date: { type: Date, default: Date.now }
 });
 
@@ -19,26 +37,7 @@ const Requests = mongoose.model("Requests", requestsSchema);
 
 module.exports = Requests;
 
-// this.state = {
-//   startDate: "",
-//   endDate: "",
-//   dust: false,
-//   vaccuum: false,
-//   temp: false,
-//   timers: false,
-//   mail: false,
-//   packages: false,
-//   yardwork: false,
-//   trash: false,
-//   moveCar: false,
-//   moveMC: false,
-//   moveMP: false,
-//   moveOS: false,
-//   playCat: false,
-//   feedCat: false,
-//   litter: false,
-//   feedCritter: false,
-//   cleanCritTank: false,
-//   feedFish: false,
-//   cleanFishTank: false,
-// };
+// client: {
+//   type: mongoose.Schema.Types.ObjectId,
+//   ref: "Client"
+// },
