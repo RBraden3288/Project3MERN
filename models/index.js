@@ -1,4 +1,8 @@
+
 module.exports = {
-    Requests: require("./requests"),
-    User: require("./user")
+  Attendant: require("./Attendant"),
+  Client: require("./Client"),
+  Requests: require("./Requests"),
+  User: require("./user")
 };
+
