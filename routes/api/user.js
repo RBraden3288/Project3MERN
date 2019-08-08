@@ -1,7 +1,7 @@
 // ---------------- BACKEND ROUTING  ----------------
     // while utils > API.js handles HTTP requests coming from the frontend, this handles the routing via express, which the server needs
 
-// const router = require("express").Router();
+const router = require("express").Router();
 // const usersController = require("../../controllers/usersController");
 
 // // Matches with "/api/books"
@@ -16,7 +16,7 @@
 //   .put(booksController.update)
 //   .delete(booksController.remove);
 
-// module.exports = router;
+module.exports = router;
 
 
 // ACTION ITEMS

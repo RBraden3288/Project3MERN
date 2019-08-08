@@ -1,10 +1,23 @@
 // ---------------- DEFINE DEPENDENCIES USING SAVVY ES6  ----------------
+
 // Express
 const express = require("express");
 // .env
 require("dotenv").config();
 // Mongoose
 const mongoose = require("mongoose");
+// Middleware needed for authentication
+const bodyParser = require("body-parser");
+// Logging so that we can review our calls
+const morgan = require("morgan");
+// Initializing our instance of express
+const app = express();
+
+// Calling the morgan dependency for error logging 
+app.use(morgan("dev"));
+
+
+
 
 // ---------------- ROUTES(?), APP, PORT ----------------
 // Not sure if we'll need a routes const b/c we're not dealing with API...
@@ -13,27 +26,39 @@ const mongoose = require("mongoose");
 
 // require routes + initialize our instance of express
 const routes = require("./routes");
-const app = require("express");
 
 // PORT
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
+// const PORT = 3001; - just in case for testing
+
 
 // ---------------- DEFINE MIDDLEWARE ----------------
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 // Static assets (Heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
+      // NOTE: have input the bodyParser middleware bc that's what was used in auth learning accessed
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
 
 // Again, if we end up using routes, then this will be used for
 // both API and view
 app.use(routes);
 
 // ---------------- CONNECT TO MONGO DB ----------------
+// WILL NEED TO CHANGE NAME OF DB TO COMMON NAMES!
+// connect to the db and confirm so
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/[INSERTNAMEHERE]"
-);
+  process.env.MONGODB_URI || "mongodb://localhost/neighborfavorsusers", { useNewUrlParser: true }
+)
+.then( () => console.log("MongoDB successfully connected"))
+.catch(err => console.log(err));
 
 // ---------------- START API SERVER ----------------
 app.listen(PORT, function() {
