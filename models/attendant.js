@@ -11,7 +11,7 @@ const attendantSchema = new Schema({
   photoUrl: String,
   residenceType: String,
   security: String,
-  attendant: true,
+  // attendant: true,
   date: { type: Date, default: Date.now }
 });
 

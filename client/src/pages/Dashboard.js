@@ -14,6 +14,20 @@ import UserNavBar from '../components/UserNavBar';
 import OpenRequestsModal from '../components/OpenRequestsModal';
 
 const Dashboard = (props) => {
+
+  // componentDidMount(){
+  //   // axios('/hey').then((result) => {
+  //   //   this.setState(result);
+  //   // })
+  //   this.setState({ requests: [
+  //       {
+  //         startDate: '09-78-17',
+  //         dusting: true,
+  //       }
+  //     ] 
+  //   })
+  // }
+
   return (
     <div>
       <UserNavBar />

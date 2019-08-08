@@ -1,5 +1,6 @@
 // FILE BRINGING US CLOSER TO ORM
 // Need to be able to CRUD requests
+// this file creates db queries based on the schema(s) in our models directory
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
 const db = require("../models/requests");
