@@ -1,7 +1,6 @@
 // Export everything within this folder
 
 module.exports = {
-  Attendant: require("./Attendant"),
-  Client: require("./Client"),
+  Users: require("./Users"),
   Requests: require("./Requests")
 };

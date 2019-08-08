@@ -18,3 +18,27 @@ const requestsSchema = new Schema({
 const Requests = mongoose.model("Requests", requestsSchema);
 
 module.exports = Requests;
+
+// this.state = {
+//   startDate: "",
+//   endDate: "",
+//   dust: false,
+//   vaccuum: false,
+//   temp: false,
+//   timers: false,
+//   mail: false,
+//   packages: false,
+//   yardwork: false,
+//   trash: false,
+//   moveCar: false,
+//   moveMC: false,
+//   moveMP: false,
+//   moveOS: false,
+//   playCat: false,
+//   feedCat: false,
+//   litter: false,
+//   feedCritter: false,
+//   cleanCritTank: false,
+//   feedFish: false,
+//   cleanFishTank: false,
+// };
