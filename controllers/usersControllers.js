@@ -1,5 +1,7 @@
 // FILE BRINGING US CLOSER TO ORM
+// this file creates db queries based on the schema(s) in our models directory
 // May only use the portion to find all attendants / by their IDs + create them
+
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
 const db = require("../models/users");

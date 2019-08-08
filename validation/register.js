@@ -15,14 +15,18 @@ module.exports = function validateRegisterInput(data) {
     data.email = !isEmpty(data.email) ? data.email : "";
     data.password = !isEmpty(data.password) ? data.password : "";
     data.passwordTwo = !isEmpty(data.passwordTwo) ? data.passwordTwo : "";
-    data.neighborhood = !isEmpty(data.neighborhood) ? data.neighborhood : "";
-    data.bio = !isEmpty(data.bio) ? data.bio : "";
-    data.photoUrl = !isEmpty(data.photoUrl) ? data.photoUrl : "";
-    data.date = !isEmpty(data.date) ? data.date : "";
+    // data.neighborhood = !isEmpty(data.neighborhood) ? data.neighborhood : "";
+    // data.bio = !isEmpty(data.bio) ? data.bio : "";
+    // data.photoUrl = !isEmpty(data.photoUrl) ? data.photoUrl : "";
+    // data.date = !isEmpty(data.date) ? data.date : "";
 
     // using the validator functionalities to check for empty fields, 
     // valid email formats, password requirements and password confirmation (i.e. pw equality)
-    if (Validator.isEmpty(data.name)) {
+    if (Validator.isEmpty(data.firstName)) {
+        errors.firstName = "Name is required";
+    }
+
+    if (Validator.isEmpty(data.lastName)) {
         errors.firstName = "Name is required";
     }
 
@@ -48,9 +52,10 @@ module.exports = function validateRegisterInput(data) {
         errors.passowrd2 = "Passwords must match";
     }
 
-    if (!Validator.equals(data.neighborhood, "Select")) {
-        errors.neighborhood = "Neighborhood is required";
-    }
+    // need to put back for neighborhood
+    // if (!Validator.equals(data.neighborhood, "Select")) {
+    //     errors.neighborhood = "Neighborhood is required";
+    // }
 
     // we return our errors object with any necessary errors and an isValid boolean 
         // to see if we have any errors
