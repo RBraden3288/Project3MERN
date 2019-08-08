@@ -15,8 +15,8 @@ const requestsSeed = [
       ref: "Client"
     },
     tasks: ["Play with cat", "Move large vehicle"],
-    startDate: "08/09/2019",
-    endDate: "08/10/2019",
+    startDate: ISODate("2019-08-10"),
+    endDate: ISODate("2019-08-12"),
     date: Date()
   },
   {
@@ -25,8 +25,8 @@ const requestsSeed = [
       ref: "Client"
     },
     tasks: ["Sign for packages", "Vaccuum"],
-    startDate: "08/12/2019",
-    endDate: "08/15/2019",
+    startDate: ISODate("2019-08-11"),
+    endDate: ISODate("2019-08-12"),
     date: Date()
   }
 ];
