@@ -2,20 +2,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Update to include residence type, security.
-const clientSchema = new Schema({
+const usersSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   neighborhood: String,
   bio: String,
-  photoUrl: String,
-  residenceType: String,
-  security: String,
-  attendant: false,
-  date: { type: Date, default: Date.now }
+  photoUrl: String
 });
 
-const Client = mongoose.model("Client", clientSchema);
+// residenceType: String,
+// security: String,
+// date: { type: Date, default: Date.now }
+const Users = mongoose.model("Users", usersSchema);
 
-module.exports = Client;
+module.exports = Users;

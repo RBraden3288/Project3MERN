@@ -25,11 +25,11 @@ module.exports = {
         // look for the user in the db
             // if they're found, don't register them (again)
             // otherwise, use the model to put them into the db
-        db.Client.findOne({ email: req.body.email }).then(user => {
+        db.Users.findOne({ email: req.body.email }).then(user => {
             if (user) {
                 return res.status(400).json({ email: "Email already exists"});
             } else {
-                const newUser = new db.Client ({
+                const newUser = new db.Users ({
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     email: req.body.email,
@@ -62,18 +62,18 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password;
 
-        db.Client.findOne({ email }).then(client => {
-            if(!client) {
+        db.Users.findOne({ email }).then(user => {
+            if(!user) {
                 return res.status(404).json({ emailnotfound: "Email not found" });
             }
 
-            bcrypt.compare(password, client.password).then(isMatch => {
+            bcrypt.compare(password, user.password).then(isMatch => {
                 if (isMatch) {
                 // bc the user matched, make the JWT Payload
                     const payload = {
-                        id: client.id,
-                        firstName: client.firstName,
-                        lastName: client.lastName
+                        id: user.id,
+                        firstName: user.firstName,
+                        lastName: user.lastName
                     };
 
                     jwt.sign(payload, secretOrKey, { expiresIn: 31556926 }, (err, token) => {

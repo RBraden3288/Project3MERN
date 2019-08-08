@@ -1,4 +1,15 @@
-db.attendants.insertMany([
+// ---------------- TEST DATA   ----------------
+// a page to input fake data in JSON FORMAT
+
+var mongoose = require("mongoose");
+const db = require("../models");
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db",
+  { useNewUrlParser: true }
+);
+
+const usersSeed = [
   {
     firstName: "Srirachel",
     lastName: "Sauce",
@@ -8,7 +19,6 @@ db.attendants.insertMany([
     bio:
       "I actually know how to recycle. Down for any task except for feeding rodents.",
     photoUrl: "https://photobucket.com/yum",
-    attendant: true,
     date: Date()
   },
   {
@@ -19,12 +29,8 @@ db.attendants.insertMany([
     neighborhood: "SOMA",
     bio: "Like a good neighbor, I'm there.",
     photoUrl: "https://photobucket.com/yummy",
-    attendant: true,
     date: Date()
-  }
-]);
-
-db.clients.insertMany([
+  },
   {
     firstName: "Siberyan",
     lastName: "Husky",
@@ -33,9 +39,6 @@ db.clients.insertMany([
     neighborhood: "Sunset",
     bio: "A regular human bean",
     photoUrl: "https://tinypic.com/f",
-    residenceType: "house",
-    security: "key",
-    attendant: false,
     date: Date()
   },
   {
@@ -46,24 +49,17 @@ db.clients.insertMany([
     neighborhood: "SOMA",
     bio: "A lean, clean, human bean",
     photoUrl: "https://images.google.com",
-    residenceType: "house",
-    security: "key",
-    attendant: false,
     date: Date()
   }
-]);
+];
 
-db.requests.insertMany([
-  {
-    tasks: ["Play with cat", "Move large vehicle"],
-    startDate: "08/09/2019",
-    endDate: "08/10/2019",
-    date: Date()
-  },
-  {
-    tasks: ["Sign for packages", "Vaccuum"],
-    startDate: "08/12/2019",
-    endDate: "08/15/2019",
-    date: Date()
-  }
-]);
+db.Users.deleteMany({})
+  .then(() => db.Users.insertMany(usersSeed))
+  .then(data => {
+    console.log(data + " users inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
