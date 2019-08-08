@@ -150,10 +150,10 @@ class Signup extends React.Component {
                                         onChange={this.handleChange}
                                         type="select"
                                         name="entryway" >
-                                            <option>Key&#47;Lockbox</option>
-                                            <option>Doorman&#47;Property Manager</option>
-                                            <option>Keyless&#47;Remote&#47;App</option>
-                </Input>
+                                        <option>Key&#47;Lockbox</option>
+                                        <option>Doorman&#47;Property Manager</option>
+                                        <option>Keyless&#47;Remote&#47;App</option>
+                                    </Input>
                                 </Label><FormText color="muted">Examples of keyless entry ways include: Nest, Fingerprint, August, etc.</FormText>
                             </Col>
                         </Row>
@@ -222,9 +222,9 @@ class Signup extends React.Component {
                         </Row>
                         <br />
                         <Row>
-                        <Col sm={{offset: 7}}>
-                        <Button type="submit" value="Submit" outline color="success">Create my account!</Button>
-                        </Col>
+                            <Col sm={{ offset: 7 }}>
+                                <Button type="submit" value="Submit" outline color="success">Create my account!</Button>
+                            </Col>
                         </Row>
                     </form>
                 </Container>
