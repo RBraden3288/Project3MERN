@@ -18,26 +18,26 @@ import "./style.css";
 export default class Grid extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             "email": ""
         }
 
         //bind the methods to "this"
         this.handleChange = this.handleChange.bind(this);
     }
-        //event handlers and functions to handle form submission
-        handleChange = event => {
-            const { name, value } = event.target
-            this.setState({
-                [name]: value,
-            })
-        }
+    //event handlers and functions to handle form submission
+    handleChange = event => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value,
+        })
+    }
 
-        handleSubmit = event => {
-            event.preventDefault();
-            console.log(`Email signup: `, this.state);
-        }
-    
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log(`Email signup: `, this.state);
+    }
+
     render() {
         return (
             <Container>
@@ -58,9 +58,9 @@ export default class Grid extends React.Component {
                                         <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
                                     </FormGroup>
                                     <Button outline color="success">
-                                    <Link to={"/dashboard/" 
-                                    // + [USERID]
-                                    }>Submit</Link>
+                                        <Link to={"/dashboard/"
+                                            // + [USERID]
+                                        }>Submit</Link>
                                     </Button>
                                 </Form>
                             </ToastBody>
@@ -75,30 +75,30 @@ export default class Grid extends React.Component {
                             <ToastBody>
                                 <Form onSubmit={this.handleSubmit}>
                                     <FormGroup check>
-                                    <Row>
-                                        <Col >
-                                            <Label>Email
+                                        <Row>
+                                            <Col >
+                                                <Label>Email
                                                 <Input
-                                                type="email"
-                                                name="email"
-                                                value={this.state.email}
-                                                onChange={this.handleChange}
-                                                />
-                                            </Label>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                        <Button outline color="success">
-                                            <Link to={{
-                                                pathname:"/signup",
-                                                state: {
-                                                    emailInput: this.state.email
-                                                }
-                                            }}>Submit</Link>
-                                        </Button>
-                                        </Col>
-                                    </Row>
+                                                        type="email"
+                                                        name="email"
+                                                        value={this.state.email}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                </Label>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <Button outline color="success">
+                                                    <Link to={{
+                                                        pathname: "/signup",
+                                                        state: {
+                                                            emailInput: this.state.email
+                                                        }
+                                                    }}>Submit</Link>
+                                                </Button>
+                                            </Col>
+                                        </Row>
                                     </FormGroup>
                                 </Form>
                             </ToastBody>
