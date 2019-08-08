@@ -11,7 +11,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
 
 export default class UserNavBar extends React.Component {
   constructor(props) {

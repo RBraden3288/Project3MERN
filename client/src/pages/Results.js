@@ -6,8 +6,8 @@ import RequestResults from "../components/RequestResults";
 const Results = (props) => {
     return (
         <div>
-        <UserNavBar />
-        <RequestResults />
+            <UserNavBar />
+            <RequestResults />
         </div>
     )
 }
