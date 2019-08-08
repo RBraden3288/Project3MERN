@@ -8,10 +8,10 @@ import {
     FormGroup,
     Label,
     CustomInput,
-    Media,
-    Button
+    Badge
 } from 'reactstrap';
 import UserNavBar from '../components/UserNavBar';
+import OpenRequestsModal from '../components/OpenRequestsModal';
 
 const Dashboard = (props) => {
   return (
@@ -33,6 +33,12 @@ const Dashboard = (props) => {
         </div>
         </FormGroup>
               </Col>
+          </Row>
+          <Row>
+            <Col>
+            <Label>Open Requests</Label>
+            <OpenRequestsModal />
+            </Col>
           </Row>
       </Container>
       
