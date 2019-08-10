@@ -2,14 +2,18 @@
 
 const router = require("express").Router();
 const authRoutes = require("./user");
-// RACHEL
-const userRoutes = require("./user");
 
+// RACHEL
+const userRoutes = require("./users");
+
+// JASA
 router.use("/users", authRoutes);
 // RACHEL API ROUTES
 router.use("/users", userRoutes);
 
 module.exports = router;
+
+// ** JASA, is it conflicting if mine is also "/users"?
 
 // ACTION ITEMS
 // customize code per our app (Jasa)

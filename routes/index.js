@@ -5,12 +5,15 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 
 // RACHEL
-const userRoutes = require("./user");
+const userRoutes = require("./users");
+const requestsRoutes = require("./requests");
 
-// API Routes
+// JASA API Routes
 router.use("/api", apiRoutes);
-// RACHEL API ROUTES
+
+// RACHEL API ROUTES -- need to confirm if this is correct
 router.use("/users", userRoutes);
+router.use("/requests", requestsRoutes);
 
 // If no API routes are hit, send the React app
 // router.use(function(req, res) {
