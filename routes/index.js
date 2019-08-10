@@ -1,12 +1,16 @@
 // ---------------- use / export backend routes we just made  ----------------
 
-
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+// RACHEL
+const userRoutes = require("./user");
+
 // API Routes
 router.use("/api", apiRoutes);
+// RACHEL API ROUTES
+router.use("/users", userRoutes);
 
 // If no API routes are hit, send the React app
 // router.use(function(req, res) {
@@ -15,3 +19,6 @@ router.use("/api", apiRoutes);
 // });
 
 module.exports = router;
+
+// ACTION ITEMS
+// customize code per our app (Jasa)
