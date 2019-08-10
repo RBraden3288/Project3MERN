@@ -5,11 +5,14 @@ const authRoutes = require("./user");
 
 // RACHEL
 const userRoutes = require("./users");
+const requestsRoutes = require("./requests");
 
 // JASA
 router.use("/users", authRoutes);
 // RACHEL API ROUTES
 router.use("/users", userRoutes);
+router.use("/requests", requestsRoutes);
+// router.use("/requests",/ (req, res) => res.json({ ok: true }));
 
 module.exports = router;
 

@@ -2,7 +2,8 @@
 
 const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
-router.route("/requests").get(requestsControllers.findAll);
+
+router.route("/").get(requestsControllers.findAll);
 
 module.exports = router;
 
