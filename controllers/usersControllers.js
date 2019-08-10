@@ -2,15 +2,15 @@
 // this file creates db queries based on the schema(s) in our models directory
 // May only use the portion to find all attendants / by their IDs + create them
 
-
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
-const db = require("../models/users");
+const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
 // Will need to test this to make sure it works
 module.exports = {
   findAll: function(req, res) {
+    console.log("db.Users", db.Users);
     db.Users.find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))

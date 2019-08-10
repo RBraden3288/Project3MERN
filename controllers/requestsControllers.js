@@ -3,13 +3,14 @@
 // this file creates db queries based on the schema(s) in our models directory
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
-const db = require("../models/requests");
+const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
 // Will need to test this to make sure it works
 module.exports = {
   findAll: function(req, res) {
+    console.log("db.Requests", db.Requests);
     db.Requests.find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))

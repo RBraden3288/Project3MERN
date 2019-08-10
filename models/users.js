@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+// require bcrypt to hash passwords
+// const bcrypt = require("bcrypt");
+
+// Use bcyrpt to hash passwords
 
 // Update to include residence type, security.
 const usersSchema = new Schema({
