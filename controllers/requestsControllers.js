@@ -3,7 +3,7 @@
 // this file creates db queries based on the schema(s) in our models directory
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
-const db = require("../models/requests");
+const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 

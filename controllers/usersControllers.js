@@ -3,7 +3,7 @@
 // May only use the portion to find all attendants / by their IDs + create them
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
-const db = require("../models/users");
+const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
