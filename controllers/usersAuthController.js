@@ -3,8 +3,8 @@ const validateRegisterLoginInput = require("../validation");
 
 
 // requiring necessary dependencies for auth
-const express = require("express");
-const router = require("express").Router();
+// const express = require("express");
+// const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -49,6 +49,8 @@ module.exports = {
                             .catch(err => console.log(err));
                     });
                 });
+
+                // return res.status(200).send("User successfully created!");
             }
         });
     },
@@ -64,7 +66,7 @@ module.exports = {
 
         db.Users.findOne({ email }).then(user => {
             if(!user) {
-                return res.status(404).json({ emailnotfound: "Email not found" });
+                return res.status(404).json({ success: false, message: "Email not found" });
             }
 
             bcrypt.compare(password, user.password).then(isMatch => {
@@ -82,8 +84,10 @@ module.exports = {
                             token: "Bearer " + token
                         });    
                     });
+
+                    // return res.status(200).send("User successfully logged in!");
                 } else {    
-                    return res.status(400).json({ passwordincorrect: "Password incorrect" });
+                    return res.status(400).json({ success: false, message: "Password incorrect" });
                 }
             });
         });

@@ -10,11 +10,21 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 // Logging so that we can review our calls
 const morgan = require("morgan");
+const passport = require("passport");
 // Initializing our instance of express
 const app = express();
 
 // Calling the morgan dependency for error logging
 app.use(morgan("dev"));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 // ---------------- ROUTES(?), APP, PORT ----------------
 // Not sure if we'll need a routes const b/c we're not dealing with API...
@@ -42,6 +52,11 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
 
 // Again, if we end up using routes, then this will be used for
 // both API and view
