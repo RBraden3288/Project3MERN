@@ -7,31 +7,44 @@ const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
-// Will need to test this to make sure it works
+// (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
-  findAll: function(req, res) {
+  // Find all users in our DB (client, attendant)
+  findAllUsers: function(req, res) {
     console.log("db.Users", db.Users);
     db.Users.find(req.query)
+      // sort by most recently updated
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  // Find all users by their ID
+  findUserById: function(req, res) {
     db.Users.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  // READ Matching Client w/ Potential Attendants
+  // Might need to do req.params instead
+  findByNeighborhood: function(req, res) {
+    db.Users.find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  // CREATE a user, using the sign-up page
+  createUser: function(req, res) {
     db.Users.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  // Not sure if we'll need the following functions
+  // These would be to delete a user or update their information
+  updateUser: function(req, res) {
     db.Users.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  removeUser: function(req, res) {
     db.Users.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

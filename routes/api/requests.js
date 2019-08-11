@@ -4,6 +4,8 @@ const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
 
 router.route("/").get(requestsControllers.findAll);
+// router.route("/create").post(requestsControllers.create);
+// router.route("/user/:clientId").post(requestsControllers.findRequestbyUserId);
 
 module.exports = router;
 
