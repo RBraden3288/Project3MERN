@@ -12,7 +12,7 @@ router.use("/users", authRoutes);
 // RACHEL API ROUTES
 router.use("/users", userRoutes);
 router.use("/requests", requestsRoutes);
-// router.use("/requests",/ (req, res) => res.json({ ok: true }));
+// router.use("/requests", (req, res) => res.json({ ok: true }));
 
 module.exports = router;
 
