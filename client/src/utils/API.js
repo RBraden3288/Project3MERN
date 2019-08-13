@@ -7,7 +7,7 @@ export default {
     return axios.post("/api/user/login", userInfo);
   },
   registerUser: function(userInfo) {
-    return axios.post("/api/user/register", userInfo);
+    return axios.post("/api/users/register", userInfo);
   }
 };
 

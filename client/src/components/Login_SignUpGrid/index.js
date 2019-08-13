@@ -20,7 +20,8 @@ export default class Grid extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: {}
     };
 
     //bind the methods to "this"
@@ -39,15 +40,22 @@ export default class Grid extends React.Component {
   handleLogIn = event => {
     event.preventDefault();
     console.log(`Email signup: `, this.state);
-    this.props.login(this.state);
+    this.props.login(this.state).catch(err => {
+      // console.log("jasa's app doesnt log me in", err.response);
+      console.log("jasa's app doesnt log me in", err);
+      // const errors = err.response.data;
+      const errors = err;
+      this.setState({ errors: errors });
+    });
   };
 
-  handleSignIn = event => {
+  handleSignUp = event => {
     event.preventDefault();
     console.log(`current state: `, this.state);
   };
 
   render() {
+    console.log("e", this.state.errors);
     return (
       <Container>
         <Row>
@@ -63,9 +71,13 @@ export default class Grid extends React.Component {
                       name="email"
                       id="exampleEmail"
                       placeholder="with a placeholder"
-                      value={this.state.signUpEmail}
+                      value={this.state.email}
                       onChange={this.handleChange}
                     />
+                    {this.state.errors.email && (
+                      // <h1>{this.state.errors.email}</h1>
+                      <h1>{this.state.errors}</h1>
+                    )}
                   </FormGroup>
                   <FormGroup>
                     <Label for="examplePassword">Password</Label>

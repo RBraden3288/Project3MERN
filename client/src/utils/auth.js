@@ -2,12 +2,20 @@ import axios from "axios";
 import frontendAPI from "./API";
 import jwtDecode from "jwt-decode";
 
+const parse = JSON.parse;
+const stringify = JSON.stringify;
+
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+
 const auth = {
   // get the item out of local storage if it's there; otherwise return null
   getJwt() {
-    if (localStorage && localStorage.getItem(token)) {
-      return parse(localStorage.getItem(token)) || null;
-    }
+    // if (localStorage && localStorage.getItem(token)) {
+
+    return localStorage.getItem("jwtToken");
+    // )
+    // || null;
+    // }
 
     //     // if (sessionStorage && sessionStorage.getItem(key)) {
     //     //   return parse(sessionStorage.getItem(key)) || null;
@@ -22,13 +30,13 @@ const auth = {
   // }
 
   getCurrentUser() {
-    const jwt = getJwt();
+    const jwt = auth.getJwt();
 
     if (!jwt) {
       return null;
     }
 
-    const decodedJwt = jwt_decode(jwt);
+    const decodedJwt = jwtDecode(jwt);
     console.log(decodedJwt);
     return decodedJwt;
   },
@@ -42,21 +50,29 @@ const auth = {
   },
 
   logUserIn(userInfo) {
-    return frontendAPI
-      .signInUser(userInfo)
-      .then(res => {
-        console.log("here is user's user's token: ", res.data.token);
-        const { token } = res.data.token;
+    // console.log(frontendAPI.signInUser);
+    return (
+      axios
+        .post("/api/auth/login", userInfo)
+        // frontendAPI
+        // .signInUser(userInfo)
+        .then(res => {
+          console.log(res);
+          const { token } = res.data.token;
+          console.log("here is user's token: ", res.data.token);
 
-        localStorage.setItem("jwtToken", token);
-        this.setAuthHeader(token);
+          localStorage.setItem("jwtToken", stringify(token));
+          this.setAuthHeader(token);
 
-        const currentUserData = this.getCurrentUser(token);
+          const currentUserObject = this.getCurrentUser(token);
+          console.log(currentUserObject);
 
-        const currentUserObject = currentUserData;
-        return Promise.resolve(currentUserData);
-      })
-      .catch(console.error);
+          return Promise.resolve(currentUserObject);
+        })
+      // .catch(err => {
+      //   console.dir(err);
+      // })
+    );
   },
 
   logOutUser() {
@@ -71,7 +87,7 @@ export default auth;
 // CODE FROM WITH LINO / VIVIAN THAT WORKED SOMEWHAT
 
 // import isEmpty from "lodash/isEmpty";
-// import axios from "axios";
+// // import axios from "axios";
 // // jwt library
 // // parse token
 

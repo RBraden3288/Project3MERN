@@ -8,7 +8,7 @@ const userRoutes = require("./users");
 const requestsRoutes = require("./requests");
 
 // JASA
-router.use("/users", authRoutes);
+router.use("/auth", authRoutes);
 // RACHEL API ROUTES
 router.use("/users", userRoutes);
 router.use("/requests", requestsRoutes);
