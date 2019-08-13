@@ -11,10 +11,7 @@ const db = require("../models");
 // const myPlaintextPassword = "s0//P4$$w0rD";
 
 // RACHEL >> Might need to put the URI key in here, too.
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 // var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
 
