@@ -12,7 +12,7 @@ module.exports = {
   // Find all users in our DB (client, attendant)
   findAllUsers: function(req, res) {
     console.log("db.Users", db.Users);
-    db.Users.find(req.query)
+    db.Users.find(req.params.id)
       // sort by most recently updated
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
