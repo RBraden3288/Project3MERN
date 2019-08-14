@@ -13,6 +13,7 @@ mongoose.connect(
 const requestsSeed = [
   {
     userID: "5d508c2b183daa32fd4b8706",
+    requestTitle: "Keep my Baby Petunias Alive",
     startDate: "08/10/2019",
     endDate: "08/12/2019",
     tasks: {
@@ -40,6 +41,7 @@ const requestsSeed = [
   },
   {
     userID: "5d508c2b183daa32fd4b8707",
+    requestTitle: "LA Day Trip",
     startDate: "08/15/2019",
     endDate: "08/16/2019",
     tasks: {
