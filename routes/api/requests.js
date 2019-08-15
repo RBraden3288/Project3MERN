@@ -21,6 +21,7 @@ router
   .get(requestsControllers.findAllRequests)
   .post(requestsControllers.createRequest);
 
+// RACHEL: When I search by a user ID I seeded, it's not picking up the request...
 router
   .route("/:id")
   .get(requestsControllers.findByRequestId)
