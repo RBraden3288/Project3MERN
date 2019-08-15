@@ -25,7 +25,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   // READ Matching Client w/ Potential Attendants
-  // Might need to do req.params instead
   findByNeighborhood: function(req, res) {
     db.Users.find(req.query)
       .then(dbModel => res.json(dbModel))
@@ -34,6 +33,12 @@ module.exports = {
   // CREATE a user, using the sign-up page
   createUser: function(req, res) {
     db.Users.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  // READ all requests that the client submitted
+  matchUsers: function(req, res) {
+    db.Users.find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
