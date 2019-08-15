@@ -23,6 +23,6 @@ router.route("/:id").get(usersControllers.findUserById);
 router.get("/:id/match", usersControllers.findByNeighborhood);
 
 // Get all requests that this client has submitted
-// router.get("/:id/requests", usersControllers.getUsersRequests);
+router.get("/:id/requests", usersControllers.getUsersRequests);
 
 module.exports = router;
