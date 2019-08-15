@@ -7,7 +7,28 @@
 // -- insert CRUD here --
 // }
 
+import axios from "axios";
+
+export default {
+    //login/ sign in already created in utils/auth.js logUserIn(), signIn
+    //save user to db
+    getUser: function (user_id) {
+        return axios.post("/" + user_id)
+    },
+    //get user by id
+    ["Method"]: function (id) {
+        return axios.get("/api/[link end point]" + id)
+    },
+    //save user's request to db
+    ["Method"]: function (request_id) {
+        return axios.post("/api/[link end point]" + request_id)
+    },
+    //get request by id
+    ["Method"]: function (id) {
+        return axios.get("/api/[link end point]" + id)
+    },
+
+}
 
 // JASA RESPONSE -- we will need axios for frontend HTTP requests
     // HTTP  requests on frontend will tell our backend how to respond
- 
