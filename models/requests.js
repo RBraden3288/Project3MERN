@@ -9,6 +9,7 @@ const requestsSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users"
   },
+  requestTitle: String,
   startDate: { type: Date, required: true },
   endDate: { type: Date },
   tasks: {
