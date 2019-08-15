@@ -13,7 +13,7 @@ import {
     Label,
     Button
 } from 'reactstrap';
-import "./style.css";
+import './style.css';
 
 export default class Grid extends React.Component {
     constructor(props) {
@@ -40,14 +40,14 @@ export default class Grid extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className="toast-container">
                 <Row>
                     <Col xs="6">
                         <Toast className="login_toast">
                             <ToastHeader>
                                 Login
                             </ToastHeader>
-                            <ToastBody>
+                            <ToastBody className='toast-body'>
                                 <Form>
                                     <FormGroup>
                                         <Label for="exampleEmail">Email</Label>
@@ -57,11 +57,11 @@ export default class Grid extends React.Component {
                                         <Label for="examplePassword">Password</Label>
                                         <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
                                     </FormGroup>
-                                    <Button outline color="success">
+                                    <button className='button'>
                                         <Link to={"/dashboard/"
                                             // + [USERID]
                                         }>Submit</Link>
-                                    </Button>
+                                    </button>
                                 </Form>
                             </ToastBody>
                         </Toast>
@@ -89,14 +89,14 @@ export default class Grid extends React.Component {
                                         </Row>
                                         <Row>
                                             <Col>
-                                                <Button outline color="success">
+                                                <button className='button'>
                                                     <Link to={{
                                                         pathname: "/signup",
                                                         state: {
                                                             emailInput: this.state.email
                                                         }
                                                     }}>Submit</Link>
-                                                </Button>
+                                                </button>
                                             </Col>
                                         </Row>
                                     </FormGroup>

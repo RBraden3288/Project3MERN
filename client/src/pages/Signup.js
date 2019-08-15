@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import NavigationBar from '../components/Navbar/';
 import Grid from '../components/Login_SignUpGrid/'
 import {
@@ -10,6 +11,7 @@ import {
     Button,
     FormText
 } from 'reactstrap';
+import { callbackify } from 'util';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -49,12 +51,28 @@ class Signup extends React.Component {
         // submit to backend to save might send you a token instead
         // this should come from App.js
         // this.props.logIn(<user obj from mongo>);
+        
+        //send an http post request to the backend
+        //a new object that contains the values coming from the form
+        const newUserSignup = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.props.location.state.emailInput,
+            neighborhood: this.state.neighborhood,
+            residence: this.state.residence,
+            entryway: this.state.entryway,
+            password: this.state.password,
+            bio: this.state.bio,
+            skills: this.state.skills,
+            photo_url: this.state.photo_url
+        }
+
+        //path using server.js localhost path?
+        //url??:URL PATH END POINT THAT CONTAINS INCOMING POST REQUEST  /dashboard/ + newUserSignup??
+        axios.post('http://localhost:3001/dashboard', newUserSignup)
+            .then(res => console.log(res.data));
     }
 
-    // componentWillMount () {
-    //     const { emailInput } = this.props.location.state
-    //     console.log(emailInput);
-    // }
 
     render() {
         return (

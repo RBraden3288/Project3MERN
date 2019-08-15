@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import UserNavBar from "../components/UserNavBar";
 import {
   FormGroup,
@@ -17,6 +18,7 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
+      requestTitle: "",
       startDate: "",
       endDate: "",
       dust: false,
@@ -38,12 +40,20 @@ class Form extends React.Component {
       cleanCritTank: false,
       feedFish: false,
       cleanFishTank: false,
+      //test in console to view if data loaded
+      loading: false
     };
 
     //bind methods to this
     this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   };
+
+  //handle axios request
+  componentDidMount() {
+
+  };
+
 
   // handle change for dates
   handleChange = event => {
@@ -62,12 +72,17 @@ class Form extends React.Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
 
   handleSubmit = event => {
     event.preventDefault();
     console.log(`Request form submitted: `, this.state);
+
+    //handle a post request for adding form to db
+    axios.
+      POST("route")
+      .then(res => console.log(res.data));
   };
 
   render() {
@@ -83,6 +98,19 @@ class Form extends React.Component {
 
 
           <form onSubmit={this.handleSubmit}>
+            <Row>
+              <Col xs="6" sm="4">
+                <Label>Create a request request
+                    <Input
+                    type="text"
+                    name="requestTitle"
+                    placeholder="Request Title"
+                    value={this.state.requestTitle}
+                    onChange={this.handleChange}
+                  ></Input>
+                </Label>
+              </Col>
+            </Row>
             <Row>
               <Col xs="6" sm="4">
                 <FormGroup>
