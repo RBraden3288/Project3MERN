@@ -17,9 +17,10 @@ router
   .post(usersControllers.createUser);
 
 router.route("/:id").get(usersControllers.findUserById);
+// If we want to also update the user, then this would be the code for it
 //   .put(usersControllers.updateUser);
 
-// get all users that are in the same neighborhood as the current user
+// Get all users that are in the same neighborhood as the current user
 router.get("/:id/match", usersControllers.findByNeighborhood);
 
 // Get all requests that this client has submitted
