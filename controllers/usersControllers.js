@@ -11,8 +11,8 @@ const db = require("../models");
 module.exports = {
   // Find all users in our DB (client, attendant)
   findAllUsers: function(req, res) {
-    console.log("db.Users", db.Users);
-    db.Users.find(req.params.id)
+    console.log("db.User", db.User);
+    db.User.find(req.params.id)
       // sort by most recently updated
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
@@ -20,25 +20,26 @@ module.exports = {
   },
   // Find all users by their ID
   findUserById: function(req, res) {
-    db.Users.findById(req.params.id)
+    db.User.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // READ Matching Client w/ Potential Attendants
   findByNeighborhood: function(req, res) {
-    db.Users.find(req.query)
+    console.log("Neighborhood", req.params);
+    db.User.find(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // CREATE a user, using the sign-up page
   createUser: function(req, res) {
-    db.Users.create(req.body)
+    db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // READ all requests that the client submitted
   getUsersRequests: function(req, res) {
-    db.Users.find(req.query)
+    db.User.find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

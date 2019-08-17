@@ -1,14 +1,11 @@
 // ---------------- TEST DATA   ----------------
 // a page to input fake data in JSON FORMAT
-
+require("dotenv").config();
 var mongoose = require("mongoose");
 const db = require("../models");
 
 // RACHEL >> Might need to put the URI key in here, too.
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const requestsSeed = [
   {

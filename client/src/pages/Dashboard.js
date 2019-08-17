@@ -13,8 +13,10 @@ import {
 } from 'reactstrap';
 import UserNavBar from '../components/UserNavBar';
 import OpenRequestsModal from '../components/OpenRequestsModal';
+import API from '../utils/API';
+import axios from 'axios';
 
-var styles ={
+var styles = {
   "backgroundImage": 'url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg")',
   "backgroundSize": 'cover',
   "color": "#FFFFFF",
@@ -46,7 +48,26 @@ class Dashboard extends Component {
   var headerStyles = {
     "fontFamily": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
     "fontSize": "18px"
-  }
+  };
+
+  // //LOAD USERS from utils/API
+  // loadUser = () => {
+  //   API.getUser()
+  //   .then(res => this.setState({ users: res.data }))
+  //   .catch(err => console.log(err));
+  // }
+  // //LOAD REQUESTS from utils/API
+  // loadUserRequests = () => {
+  //   API.getRequest()
+  //   .then(res => this.setState({ requests: res.data }))
+  //   .catch(err => console.log(err));
+  // }
+
+  //Mount users and requests
+  // componentDidMount() {
+  //   this.loadUser();
+  //   this.loadUserRequests();
+  // }
 
   return (
     <div>
@@ -59,7 +80,7 @@ class Dashboard extends Component {
       </Jumbotron>
       <Container>
         <Row>
-          <Col xs='6' sm='4' style={{"backgroundColor":"#DCC7AA", "borderRadius":"5px"}}>
+          <Col xs='6' sm='4' style={{ "backgroundColor": "#DCC7AA", "borderRadius": "5px" }}>
             <FormGroup>
               <Label for="exampleCheckbox" style={headerStyles}>Neighborly Availability</Label>
               <div>
