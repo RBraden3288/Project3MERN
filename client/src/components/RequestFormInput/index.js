@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import UserNavBar from "../components/UserNavBar";
 import {
   FormGroup,
-  Label,
+  Label,  
   Input,
   Button,
   Container,
@@ -12,8 +11,9 @@ import {
   Col,
   FormText
 } from 'reactstrap';
+import styles from './style.css'
 
-class Form extends React.Component {
+class RequestFormInput extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +49,6 @@ class Form extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   };
 
-
   // handle change for dates
   handleChange = event => {
     const { name, value } = event.target
@@ -74,20 +73,21 @@ class Form extends React.Component {
     event.preventDefault();
     console.log(`Request form submitted: `, this.state);
 
-    //handle a post request for adding form to db
+    // handle a post request for adding form to db
     axios.
       post("/api/requests", this.state)
-      .then(res => console.log(res.data));
+      .then(res => console.log('data from server', res.data));
   };
 
   render() {
     return (
-      <div>
-        <UserNavBar />
-        <br />
+      <div className='form-holder'>
         <Container>
           <Row>
-            Submit A Request
+            <div className='header-holder'>
+              <p className='header'>Submit A Request</p>
+              <p className='header-sub'>Tell us what you need and let us find you a neighbor!</p>
+            </div>
           </Row>
           <br />
 
@@ -106,10 +106,11 @@ class Form extends React.Component {
                 </Label>
               </Col>
             </Row>
+            <br />
             <Row>
               <Col xs="6" sm="4">
                 <FormGroup>
-                  <Label>Date
+                  <Label>Start Date
           <Input
                       type="date"
                       name="startDate"
@@ -121,10 +122,11 @@ class Form extends React.Component {
                   </Label>
                 </FormGroup>
               </Col>
-              <Col>to</Col>
+            </Row>
+            <Row>
               <Col xs="6" sm="4">
                 <FormGroup>
-                  <Label>Date
+                  <Label>End Date
           <Input
                       type="date"
                       name="endDate"
@@ -137,12 +139,9 @@ class Form extends React.Component {
                 </FormGroup>
               </Col>
             </Row>
+            <div className='checked-tasks'>
 
-            <Row>
-              <Col xs="6">
-
-              </Col>
-            </Row>
+            
             <Row>Indoor tasks</Row>
             <Row>
               <Col>
@@ -424,34 +423,44 @@ class Form extends React.Component {
 
 
             <Button>Submit request!</Button>
-
+</div>
           </form>
         </Container>
+        
       </div>
 
     )
   }
 }
 
-export default Form;
+export default RequestFormInput;
 
-// This is the form the resident will use to fill out their needs
-// all the other components you want to import will go into here
-// Example: import { Input, TextArea, Form Btn } from "..components/Form"
-// In which case, we'd have to create those components in the component folder
 
-// TO-DO: Figure out what class we'd want to put
-// class __ extends __ {
 
-// We will probably use states here
 
-// }
-
-// render() {
-// return (
-// render reactstrap elements here for the interest form page
-// )
-// }
-
-// ---------- EXPORTING ----------
-// export default Form;
+// POSTMAN BODY JSON
+// {
+//   "cleanCritTank": false,
+//   "cleanFishTank": false,
+//   "dust": false,
+//   "endDate": "",
+//   "feedCat": false,
+//   "feedCritter": false,
+//   "feedFish": false,
+//   "litter": false,
+//   "loading": false,
+//   "mail": false,
+//   "moveCar": false,
+//   "moveMC": false,
+//   "moveMP": false,
+//   "moveOS": false,
+//   "packages": false,
+//   "playCat": false,
+//   "requestTitle": "LA Day trip"
+//   "startDate": "2019-08-20"
+//   "temp": false,
+//   "timers": false,
+//   "trash": false,
+//   "vaccuum": true,
+//   "yardwork": false
+//   }

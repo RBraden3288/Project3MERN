@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component} from 'react'; 
+import axios from 'axios';
 // import the props from Signup '../pages/Signup';
 import {
   Container,
@@ -21,20 +22,27 @@ var styles ={
   "fontFamily": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
 }
 
-const Dashboard = (props) => {
-
+class Dashboard extends Component {
+  state = {
+    requests: []
+  }
+  
+  componentDidMount() {
+    axios.get('/')
+        .then(res => console.log(res.data));
+}
   // componentDidMount(){
-  //   // axios('/hey').then((result) => {
+  //   // axios.get('/api/requests/' + passportuserID).then((result) => {
   //   //   this.setState(result);
   //   // })
   //   this.setState({ requests: [
   //       {
-  //         startDate: '09-78-17',
-  //         dusting: true,
+  //         ...response, array of req objects
   //       }
   //     ] 
   //   })
   // }
+  render() {
   var headerStyles = {
     "fontFamily": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
     "fontSize": "18px"
@@ -45,7 +53,7 @@ const Dashboard = (props) => {
       <UserNavBar />
       <Jumbotron fluid style={styles}>
         <Container fluid>
-          <h1 className="display-3">Welcome, {props.user.firstName}</h1>
+          <h1 className="display-3">Welcome, {this.props.user.firstName}</h1>
           <p className="lead">Here you can view open requests and change your availability.</p>
         </Container>
       </Jumbotron>
@@ -63,17 +71,15 @@ const Dashboard = (props) => {
           <Col xs='auto'>
             <Label style={headerStyles}>Open Requests</Label>
             {/* map through requests */}
-            {/* (<div> */}
-              {/* {this.props.requests.map((requestTitle, date, tasks) => ( */}
-                <OpenRequestsModal />
-              {/* ))} */}
-              {/* </div>) */}
+                  {this.state.requests.length === 0 && <p>There are no open requests.</p>}
+                  {this.state.requests.length > 0 && this.state.requests.map(request => <OpenRequestsModal request={request} />)}
           </Col>
         </Row>
       </Container>
 
     </div>
   );
+  }
 };
 
 export default Dashboard;
