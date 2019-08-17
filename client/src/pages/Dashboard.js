@@ -14,7 +14,6 @@ import {
 import UserNavBar from '../components/UserNavBar';
 import OpenRequestsModal from '../components/OpenRequestsModal';
 import API from '../utils/API';
-import axios from 'axios';
 
 var styles = {
   "backgroundImage": 'url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg")',

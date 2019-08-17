@@ -16,27 +16,27 @@ import {
 import './style.css';
 
 export default class Grid extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            "email": ""
-        }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         "email": ""
+    //     }
 
-        //bind the methods to "this"
-        this.handleChange = this.handleChange.bind(this);
-    }
-    //event handlers and functions to handle form submission
-    handleChange = event => {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value,
-        })
-    }
+    //     //bind the methods to "this"
+    //     this.handleChange = this.handleChange.bind(this);
+    // }
+    // //event handlers and functions to handle form submission
+    // handleChange = event => {
+    //     const { name, value } = event.target
+    //     this.setState({
+    //         [name]: value,
+    //     })
+    // }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(`Email signup: `, this.state);
-    }
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     console.log(`Email signup: `, this.state);
+    // }
 
     render() {
         return (
@@ -62,12 +62,16 @@ export default class Grid extends React.Component {
                                             // + [USERID]
                                         }>Submit</Link>
                                     </button>
+                                    <button className='button'>
+                                        <Link to={"/requestform" 
+                                        }>SignUp</Link>
+                                    </button>
                                 </Form>
                             </ToastBody>
                         </Toast>
                     </Col>
 
-                    <Col xs="6">
+                    {/* <Col xs="6">
                         <Toast className="signup_toast">
                             <ToastHeader>
                                 Create your account!
@@ -103,7 +107,7 @@ export default class Grid extends React.Component {
                                 </Form>
                             </ToastBody>
                         </Toast>
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         );

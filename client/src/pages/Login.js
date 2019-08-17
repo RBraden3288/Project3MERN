@@ -10,9 +10,10 @@ const Login = (props) => {
     return (
         <div>
             <NavigationBar />
+            <div>
             <CarouselRS />
-            <br />
             <Grid />
+            </div>
         </div>
     )
 }
