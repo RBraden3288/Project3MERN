@@ -22,7 +22,9 @@ router.route("/:id").get(usersControllers.findUserById);
 // THE FOLLOWING TWO ROUTES WON'T WORK RIGHT NOW
 // Get all users that are in the same neighborhood as the current user
 router.get("/neighborhood/:neighborhood", usersControllers.findByNeighborhood);
+
 // Get all requests that this client has submitted
-router.get("/:id/requests", usersControllers.getUsersRequests);
+// moving this to requests
+// router.get("/:id/requests", usersControllers.getUsersRequests);
 
 module.exports = router;
