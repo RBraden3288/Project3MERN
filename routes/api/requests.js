@@ -20,4 +20,6 @@ router
   .put(requestsControllers.updateRequest)
   .delete(requestsControllers.removeRequest);
 
+router.route("/userID/:userID").get(requestsControllers.getUsersRequests);
+
 module.exports = router;

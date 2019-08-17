@@ -36,13 +36,8 @@ module.exports = {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
-  // READ all requests that the client submitted
-  getUsersRequests: function(req, res) {
-    db.User.find(req.query)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
   }
+
   // Not sure if we'll need the following functions
   // These would be to delete a user or update their information
   // updateUser: function(req, res) {
