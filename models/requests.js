@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const requestsSchema = new Schema({
   userID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Users"
+    ref: "User"
   },
   requestTitle: String,
   startDate: { type: Date, required: true },
@@ -36,6 +36,6 @@ const requestsSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Requests = mongoose.model("Requests", requestsSchema);
+const Request = mongoose.model("Request", requestsSchema);
 
-module.exports = Requests;
+module.exports = Request;

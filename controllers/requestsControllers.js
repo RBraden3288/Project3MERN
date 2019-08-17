@@ -11,33 +11,33 @@ const db = require("../models");
 module.exports = {
   // READ requests from the Request Collection
   findAllRequests: function(req, res) {
-    console.log("db.Requests", db.Requests);
-    db.Requests.find(req.query)
+    console.log("db.Request", db.Request);
+    db.Request.find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // Ability to find a specific request
+  // READ a specific request
   findByRequestId: function(req, res) {
-    db.Requests.findById(req.params.id)
+    db.Request.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // CREATE request using Request Form
   createRequest: function(req, res) {
-    db.Requests.create(req.body)
+    db.Request.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // UPDATE request made
   updateRequest: function(req, res) {
-    db.Requests.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // DELETE request
   removeRequest: function(req, res) {
-    db.Requests.findById({ _id: req.params.id })
+    db.Request.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

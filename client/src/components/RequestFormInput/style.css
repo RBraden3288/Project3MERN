@@ -1,0 +1,26 @@
+body {
+    
+}
+
+.form-holder {
+    width: 800px;
+    height: 500px;
+    margin: 10px 20px 0px 20px;
+    background-image: url('https://i.ibb.co/ypCkG4y/IMG-7394.png');
+    background-repeat: no-repeat;
+}
+
+.header-holder {
+
+}
+.header {
+    font-size: 24px;
+    color: rgb(247,195,49)
+}
+
+.checked-tasks {
+    margin: 80px 20px 0px 20px;
+
+    
+}
+
