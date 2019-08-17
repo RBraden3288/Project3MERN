@@ -1,6 +1,6 @@
 // ---------------- TEST DATA   ----------------
 // a page to input fake data in JSON FORMAT
-
+require("dotenv").config();
 var mongoose = require("mongoose");
 const db = require("../models");
 
