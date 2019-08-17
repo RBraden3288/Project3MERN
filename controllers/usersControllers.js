@@ -26,7 +26,7 @@ module.exports = {
   },
   // READ Matching Client w/ Potential Attendants
   findByNeighborhood: function(req, res) {
-    console.log("Neighorhood", req.params);
+    console.log("Neighborhood", req.params);
     db.User.find(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
