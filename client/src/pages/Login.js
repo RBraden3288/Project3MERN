@@ -6,10 +6,15 @@ import Grid from "../components/Login_SignUpGrid";
 const Login = props => {
   return (
     <div>
+      {console.log("props i LoginSignup", props)}
       <NavigationBar />
       <CarouselRS />
       <br />
-      <Grid login={props.login} />
+      <Grid
+        // {...props}
+        login={props.login}
+        // authenticatedRedirect={props.redirectToReferrer}
+      />
     </div>
   );
 };

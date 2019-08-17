@@ -6,7 +6,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      auth.getJwt() !== undefined ? (
+      // var test = auth.getJwt();
+      // console.log(auth.getJwt())
+      auth.getJwt() ? (
         <Component {...props} />
       ) : (
         <Redirect

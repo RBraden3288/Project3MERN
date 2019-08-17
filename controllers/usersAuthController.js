@@ -47,7 +47,7 @@ module.exports = {
           });
         });
 
-        // return res.status(200).send("User successfully created!");
+        // return res.status(200).json("User successfully created!");
       }
     });
   },
@@ -80,14 +80,17 @@ module.exports = {
             secretOrKey,
             { expiresIn: 31556926 },
             (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token
-              });
+              res
+                .json({
+                  success: true,
+                  headerToken: "Bearer " + token,
+                  token: token
+                })
+                .catch(err => console.log(err));
             }
           );
 
-          // return res.status(200).send("User successfully logged in!");
+          //   return res.status(200).send("User successfully logged in!");
         } else {
           return res.status(400).json({ password: "Password incorrect" });
         }

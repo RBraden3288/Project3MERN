@@ -14,8 +14,21 @@ import {
   Button
 } from "reactstrap";
 import "./style.css";
+// import LoginFields from "../HomeRegisteredEmailInput";
+import SignUpField from "../HomeSignupInput";
+import auth from "../../utils/auth";
 
-export default class Grid extends React.Component {
+// export default class Grid extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       email: "",
+//       password: "",
+//       errors: {}
+//     };
+// }
+
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,13 +36,20 @@ export default class Grid extends React.Component {
       password: "",
       errors: {}
     };
-
-    //bind the methods to "this"
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleSignIn = this.handleSignIn.bind(this);
   }
+  //bind the methods to "this"
+  // this.handleChange = this.handleChange.bind(this);
+  // this.handleSubmit = this.handleSubmit.bind(this);
+  // this.handleSignIn = this.handleSignIn.bind(this);
+  // }
   //event handlers and functions to handle form submission
+  // handleChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -37,10 +57,19 @@ export default class Grid extends React.Component {
     });
   };
 
+  login = userInfo => {
+    return auth.logUserIn(userInfo).then(user => {
+      // set user state
+      this.setState({ user });
+      // this.setState({ user, redirectToReferrer: true });
+    });
+  };
+
   handleLogIn = event => {
     event.preventDefault();
     console.log(`Email signup: `, this.state);
-    this.props.login(this.state).catch(err => {
+    console.log("this.props", this.props);
+    this.login(this.state).catch(err => {
       // console.log("jasa's app doesnt log me in", err.response);
       console.log("jasa's app doesnt log me in", err);
       // const errors = err.response.data;
@@ -49,17 +78,30 @@ export default class Grid extends React.Component {
     });
   };
 
-  handleSignUp = event => {
-    event.preventDefault();
-    console.log(`current state: `, this.state);
-  };
+  // handleSignUp = event => {
+  //   event.preventDefault();
+  //   console.log(`current state: `, this.state);
+  // };
 
   render() {
-    console.log("e", this.state.errors);
+    // if
+    // console.log("e", this.state.errors);
     return (
       <Container>
         <Row>
           <Col xs="6">
+            {/* <LoginFields
+            //   loginEmail={this.state.email}
+            //   password={this.state.password}
+            //   errors={this.state.errors}
+            //   handleChange={this.handleChange}
+            //   handleLogIn={this.handleLogin}
+            // {...props}
+            // login={props.login}
+            // authenticatedRedirect={props.authenticatedRedirect}
+            /> */}
+
+            {/* <div> */}
             <Toast className="login_toast">
               <ToastHeader>Login</ToastHeader>
               <ToastBody>
@@ -70,7 +112,7 @@ export default class Grid extends React.Component {
                       type="email"
                       name="email"
                       id="exampleEmail"
-                      placeholder="with a placeholder"
+                      placeholder="johnsmith@email.com"
                       value={this.state.email}
                       onChange={this.handleChange}
                     />
@@ -85,12 +127,16 @@ export default class Grid extends React.Component {
                       type="password"
                       name="password"
                       id="examplePassword"
-                      placeholder="password placeholder"
+                      placeholder="password"
                       value={this.state.password}
                       onChange={this.handleChange}
                     />
                   </FormGroup>
-                  <Button outline color="success" onClick={this.handleLogIn}>
+                  <Button
+                    outline
+                    color="success"
+                    onClick={this.props.handleLogIn}
+                  >
                     {/* <Link to={"/dashboard/"
                                             // + [USERID]
                                         }>Submit</Link> */}
@@ -99,50 +145,19 @@ export default class Grid extends React.Component {
                 </Form>
               </ToastBody>
             </Toast>
+            {/* </div> */}
           </Col>
 
-          <Col xs="6">
-            <Toast className="signup_toast">
-              <ToastHeader>Create your account!</ToastHeader>
-              <ToastBody>
-                <Form onSubmit={this.handleSubmit}>
-                  <FormGroup check>
-                    <Row>
-                      <Col>
-                        <Label>
-                          Email
-                          <Input
-                            type="email"
-                            name="sign-up-email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                          />
-                        </Label>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Button outline color="success">
-                          <Link
-                            to={{
-                              pathname: "/signup",
-                              state: {
-                                emailInput: this.state.email
-                              }
-                            }}
-                          >
-                            Submit
-                          </Link>
-                        </Button>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                </Form>
-              </ToastBody>
-            </Toast>
-          </Col>
+          {/* <Col xs="6">
+            <SignUpField
+            // signUpEmail={this.state.email}
+            // handleChange={this.handleChange}
+            />
+          </Col> */}
         </Row>
       </Container>
     );
   }
 }
+
+export default Login;

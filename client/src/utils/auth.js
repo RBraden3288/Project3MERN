@@ -32,7 +32,7 @@ const auth = {
   getCurrentUser() {
     const jwt = auth.getJwt();
 
-    if (!jwt) {
+    if (jwt === undefined) {
       return null;
     }
 
@@ -58,11 +58,15 @@ const auth = {
         // .signInUser(userInfo)
         .then(res => {
           console.log(res);
-          const { token } = res.data.token;
-          console.log("here is user's token: ", res.data.token);
+          const token = res.data.token;
+          const headerToken = res.data.headerToken;
+          console.log("here is user's token: ", token);
+          console.log(headerToken);
 
           localStorage.setItem("jwtToken", stringify(token));
-          this.setAuthHeader(token);
+          console.log("we stored it in local storage now!");
+          this.setAuthHeader(headerToken);
+          console.log("now requests will be authorized");
 
           const currentUserObject = this.getCurrentUser(token);
           console.log(currentUserObject);
