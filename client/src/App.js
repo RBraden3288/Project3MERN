@@ -11,26 +11,18 @@ import About from "../src/pages/About";
 import Form from "../src/pages/RequestForm";
 import Dashboard from "../src/pages/Dashboard";
 import Results from "../src/pages/Results";
+import axios from 'axios';
 
 class App extends Component {
 
   //testing
   state = {
-    user: {
-      firstName: "John",
-      lastName: "Doe",
-      email: "John.Doe@gmail.com",
-      neighborhood: "Sunset",
-      residence: "Entire home",
-      entryway: "Key/Lockbox",
-      password: "hiya88!",
-      bio: "I'm John",
-      skills: "I can drive a car and a motorcycle",
-      photo_url: "https://www.google.com/search?q=photo+url&oq=photo+url&aqs=chrome..69i57j0l5.1992j0j7&sourceid=chrome&ie=UTF-8"
-    }
+    // import user info from db
+    user: []
   }
   
   async componentDidMount() {
+    axios.get('/api/users')
     
     // let userLogin = await API.get('/login??', {
     //   params: {

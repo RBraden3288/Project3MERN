@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import {
   FormGroup,
-  Label,
+  Label,  
   Input,
   Button,
   Container,
@@ -49,12 +49,6 @@ class RequestFormInput extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   };
 
-  //handle axios request
-  componentDidMount() {
-
-  };
-
-
   // handle change for dates
   handleChange = event => {
     const { name, value } = event.target
@@ -79,10 +73,10 @@ class RequestFormInput extends React.Component {
     event.preventDefault();
     console.log(`Request form submitted: `, this.state);
 
-    //handle a post request for adding form to db
-    // axios.
-    //   POST("route")
-    //   .then(res => console.log(res.data));
+    // handle a post request for adding form to db
+    axios.
+      post("/api/requests", this.state)
+      .then(res => console.log('data from server', res.data));
   };
 
   render() {
@@ -441,3 +435,32 @@ class RequestFormInput extends React.Component {
 
 export default RequestFormInput;
 
+
+
+
+// POSTMAN BODY JSON
+// {
+//   "cleanCritTank": false,
+//   "cleanFishTank": false,
+//   "dust": false,
+//   "endDate": "",
+//   "feedCat": false,
+//   "feedCritter": false,
+//   "feedFish": false,
+//   "litter": false,
+//   "loading": false,
+//   "mail": false,
+//   "moveCar": false,
+//   "moveMC": false,
+//   "moveMP": false,
+//   "moveOS": false,
+//   "packages": false,
+//   "playCat": false,
+//   "requestTitle": "LA Day trip"
+//   "startDate": "2019-08-20"
+//   "temp": false,
+//   "timers": false,
+//   "trash": false,
+//   "vaccuum": true,
+//   "yardwork": false
+//   }
