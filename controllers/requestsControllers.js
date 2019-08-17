@@ -41,5 +41,12 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  // READ all requests a client submitted
+  getUsersRequests: function(req, res) {
+    console.log("Here you go", req.params);
+    db.Request.find(req.params)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
