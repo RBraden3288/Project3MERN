@@ -14,16 +14,19 @@ const db = require("../models");
 
 module.exports = {
   create: function(req, res) {
+    console.log("here is req: ", req);
     const { errors, isValid } = validateRegisterLoginInput.register(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
 
+    const email = req.body.email;
+
     // look for the user in the db
     // if they're found, don't register them (again)
     // otherwise, use the model to put them into the db
-    db.User.findOne({ email: req.body.email }).then(user => {
+    db.User.findOne({ email }).then(user => {
       if (user) {
         return res.status(400).json({ email: "Email already exists" });
       } else {
@@ -37,8 +40,7 @@ module.exports = {
           entryType: req.body.entryway,
           bio: req.body.bio,
           skills: req.body.skills,
-          photoUrl: req.body.photo_url,
-          password: req.body.password
+          photoUrl: req.body.photo_url
           // input all the other things to register about the user as well?
         });
 

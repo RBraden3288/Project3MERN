@@ -14,13 +14,14 @@ module.exports = function validateRegisterInput(data) {
   data.lastName = !isEmpty(data.lastName) ? data.lastName : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
-  data.passwordTwo = !isEmpty(data.verifypassword) ? data.verifypassword : "";
+  data.passwordTwo = !isEmpty(data.passwordTwo) ? data.passwordTwo : "";
   data.neighborhood = !isEmpty(data.neighborhood) ? data.neighborhood : "";
   data.residence = !isEmpty(data.residence) ? data.residence : "";
+  data.entryway = !isEmpty(data.entryway) ? data.entryway : "";
   data.bio = !isEmpty(data.bio) ? data.bio : "";
-  data.photoUrl = !isEmpty(data.photo_url) ? data.photo_url : "";
+  data.photo_url = !isEmpty(data.photo_url) ? data.photo_url : "";
   data.skills = !isEmpty(data.skills) ? data.skills : "";
-  data.date = !isEmpty(data.date) ? data.date : "";
+  //   data.date = !isEmpty(data.date) ? data.date : "";
 
   // using the validator functionalities to check for empty fields,
   // valid email formats, password requirements and password confirmation (i.e. pw equality)
