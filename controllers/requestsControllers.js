@@ -7,33 +7,45 @@ const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
-// Will need to test this to make sure it works
+// (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
-  findAll: function(req, res) {
-    console.log("db.Requests", db.Requests);
-    db.Requests.find(req.query)
+  // READ requests from the Request Collection
+  findAllRequests: function(req, res) {
+    console.log("db.Request", db.Request);
+    db.Request.find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    db.Requests.findById(req.params.id)
+  // READ a specific request
+  findByRequestId: function(req, res) {
+    db.Request.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
-    db.Requests.create(req.body)
+  // CREATE request using Request Form
+  createRequest: function(req, res) {
+    db.Request.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
-    db.Requests.findOneAndUpdate({ _id: req.params.id }, req.body)
+  // UPDATE request made
+  updateRequest: function(req, res) {
+    db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
-    db.Requests.findById({ _id: req.params.id })
+  // DELETE request
+  removeRequest: function(req, res) {
+    db.Request.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  // READ all requests a client submitted
+  getUsersRequests: function(req, res) {
+    console.log("Here you go", req.params);
+    db.Request.find(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

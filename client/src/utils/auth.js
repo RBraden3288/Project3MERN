@@ -37,7 +37,7 @@ const auth = {
     }
 
     const decodedJwt = jwtDecode(jwt);
-    console.log(decodedJwt);
+    console.log("decoded jwt: ", decodedJwt);
     return decodedJwt;
   },
 
@@ -68,8 +68,8 @@ const auth = {
           this.setAuthHeader(headerToken);
           console.log("now requests will be authorized");
 
-          const currentUserObject = this.getCurrentUser(token);
-          console.log(currentUserObject);
+          const currentUserObject = this.getCurrentUser();
+          console.log("current user object: ", currentUserObject);
 
           return Promise.resolve(currentUserObject);
         })

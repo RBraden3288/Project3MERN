@@ -1,0 +1,35 @@
+.toast-container {
+    position: relative;
+    width: 600px;
+    bottom: 400px;
+}
+
+.login_toast {
+
+}
+.signup_toast{
+
+}
+
+.toast-body{
+    
+}
+
+.button {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    background: #DCC7AA;
+    padding: 5px 20px 5px 20px;
+    text-decoration: none;
+    
+}
+
+.button:hover {
+    background: #f7c331;
+    text-decoration: none;
+}
+

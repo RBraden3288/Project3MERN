@@ -1,16 +1,18 @@
 // ---------------- TEST DATA   ----------------
 // a page to input fake data in JSON FORMAT
-
+require("dotenv").config();
 var mongoose = require("mongoose");
 const db = require("../models");
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db",
-  { useNewUrlParser: true }
-);
+// RACHEL >> Might need to put the URI key in here, too.
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const requestsSeed = [
   {
+    userID: "5d508c2b183daa32fd4b8706",
+    requestTitle: "Keep my Baby Petunias Alive",
+    startDate: "08/10/2019",
+    endDate: "08/12/2019",
     tasks: {
       dust: true,
       vaccuum: false,
@@ -32,11 +34,13 @@ const requestsSeed = [
       feedFish: false,
       cleanFishTank: false
     },
-    startDate: "08/10/2019",
-    endDate: "08/12/2019",
     date: Date()
   },
   {
+    userID: "5d508c2b183daa32fd4b8707",
+    requestTitle: "LA Day Trip",
+    startDate: "08/15/2019",
+    endDate: "08/16/2019",
     tasks: {
       dust: false,
       vaccuum: true,
@@ -58,8 +62,6 @@ const requestsSeed = [
       feedFish: true,
       cleanFishTank: false
     },
-    startDate: "08/15/2019",
-    endDate: "08/16/2019",
     date: Date()
   }
 ];
@@ -74,8 +76,3 @@ db.Requests.deleteMany({})
     console.error(err);
     process.exit(1);
   });
-
-//  client: {
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: "Client"
-// },

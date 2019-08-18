@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
   Toast,
@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import "./style.css";
 // import LoginFields from "../HomeRegisteredEmailInput";
-import SignUpField from "../HomeSignupInput";
+
 import auth from "../../utils/auth";
 
 // export default class Grid extends React.Component {
@@ -28,7 +28,7 @@ import auth from "../../utils/auth";
 //     };
 // }
 
-class Login extends React.Component {
+class LoginGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,6 +50,33 @@ class Login extends React.Component {
   //   });
   // };
 
+  componentDidMount() {
+    // check to see if there is a token (i.e. if the user has already logged in)
+    // if so, set the current user to be this user using their token
+    // (i.e. run the current user function --
+    // which will decode the user's token from localStorage or return null
+    // --> if this returns a truthy value (meaning there's a current user)
+    // --> authorize the user's requests using their token
+    var token = auth.getJwt();
+
+    if (token) {
+      console.log("Here are my props:", this.props);
+      auth.setAuthHeader(token);
+      // console.log(token.exp);
+      var currentUser = auth.getCurrentUser();
+      console.log(currentUser);
+
+      // this.setState(currentUser);
+      window.location.href = "/dashboard/:id";
+      // this.props.history.push("/about");
+    } else if (currentUser && currentUser.exp < Date.now() / 1000) {
+      auth.logOutUser();
+      window.location.href = "/";
+    } else {
+      console.log("User is not logged in");
+    }
+  }
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -57,10 +84,14 @@ class Login extends React.Component {
     });
   };
 
+  // <<<<<<< HEAD
   login = userInfo => {
     return auth.logUserIn(userInfo).then(user => {
       // set user state
       this.setState({ user });
+      console.log("User is logged in");
+      window.location.href = "dashboard/:id";
+      // this.props.history.push("/dashboard" + user._id);
       // this.setState({ user, redirectToReferrer: true });
     });
   };
@@ -87,7 +118,7 @@ class Login extends React.Component {
     // if
     // console.log("e", this.state.errors);
     return (
-      <Container>
+      <Container className="toast-container">
         <Row>
           <Col xs="6">
             {/* <LoginFields
@@ -104,7 +135,7 @@ class Login extends React.Component {
             {/* <div> */}
             <Toast className="login_toast">
               <ToastHeader>Login</ToastHeader>
-              <ToastBody>
+              <ToastBody className="toast-body">
                 <Form>
                   <FormGroup>
                     <Label for="exampleEmail">Email</Label>
@@ -132,16 +163,17 @@ class Login extends React.Component {
                       onChange={this.handleChange}
                     />
                   </FormGroup>
-                  <Button
-                    outline
-                    color="success"
-                    onClick={this.props.handleLogIn}
-                  >
+                  <Button outline color="success" onClick={this.handleLogIn}>
                     {/* <Link to={"/dashboard/"
                                             // + [USERID]
                                         }>Submit</Link> */}
                     Submit
                   </Button>
+                  {/* <button className='button'>
+//                                         <Link to={"/dashboard/"
+//                                             // + [USERID]
+//                                         }>Submit</Link>
+//                                     </button></button> */}
                 </Form>
               </ToastBody>
             </Toast>
@@ -160,4 +192,47 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginGrid;
+// ===
+//                     <Col xs="6">
+//                         <Toast className="signup_toast">
+//                             <ToastHeader>
+//                                 Create your account!
+//                             </ToastHeader>
+//                             <ToastBody>
+//                                 <Form onSubmit={this.handleSubmit}>
+//                                     <FormGroup check>
+//                                         <Row>
+//                                             <Col >
+//                                                 <Label>Email
+//                                                 <Input
+//                                                         type="email"
+//                                                         name="email"
+//                                                         value={this.state.email}
+//                                                         onChange={this.handleChange}
+//                                                     />
+//                                                 </Label>
+//                                             </Col>
+//                                         </Row>
+//                                         <Row>
+//                                             <Col>
+//                                                 <button className='button'>
+//                                                     <Link to={{
+//                                                         pathname: "/signup",
+//                                                         state: {
+//                                                             emailInput: this.state.email
+//                                                         }
+//                                                     }}>Submit</Link>
+//                                                 </button>
+//                                             </Col>
+//                                         </Row>
+//                                     </FormGroup>
+//                                 </Form>
+//                             </ToastBody>
+//                         </Toast>
+//                     </Col>
+//                 </Row>
+//             </Container>
+//         );
+//     }
+// }

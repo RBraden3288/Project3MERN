@@ -5,9 +5,25 @@ import {
   Col,
   Row,
   Button
-} from 'reactstrap'
+} from 'reactstrap';
+import axios from 'axios';
 
 export default class RequestResults extends React.Component {
+  constructor(props) {
+    super(props)
+    // empty requests array
+     this.state = {
+       userRequests: []
+    }
+  }
+
+  //handle axios request
+  // componentDidMount() {
+  //   //axios request to BE for requests
+  //   axios.get('/api/requests/' + )
+  //   //set userRequests state with array of data
+  // };
+
   render() {
     return (
       <Container>

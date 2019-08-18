@@ -11,7 +11,8 @@ class OpenRequestsModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modal: false
+            modal: false,
+            requests: []
         };
 
         this.toggle = this.toggle.bind(this);
@@ -25,14 +26,20 @@ class OpenRequestsModal extends React.Component {
 
     render() {
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
+        var btnStyles = {
+            "backgroundColor": "#4ABDAC",
+            "borderRadius": "5px",
+            "height": "100px"
+        };
 
         return (
+            // if there are no openRequests RequestResults, use the noRequests span. If there are use the modal.
             <div>
-                <Button color="info" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+                <button style={btnStyles} onClick={this.toggle}>{this.props.buttonLabel} {this.state.requestTitle} {this.state.startDate} to {this.state.endDate}</button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle} close={closeBtn}>Request title</ModalHeader>
+                    <ModalHeader toggle={this.toggle} close={closeBtn}>{this.props.request.title}</ModalHeader>
                     <ModalBody>
-                        Needs
+                        {this.props.request}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.toggle}>Update</Button>{' '}

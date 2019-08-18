@@ -66,10 +66,11 @@ app.use(routes);
 // ---------------- CONNECT TO MONGO DB ----------------
 // WILL NEED TO CHANGE NAME OF DB TO COMMON NAMES!
 // connect to the db and confirm so
+
+// TO-DO: RACHEL >> save db name as a key, config.mongoURI
+// Put the key into Config > index.js
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/neighborfavors_db", {
-    useNewUrlParser: true
-  })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 

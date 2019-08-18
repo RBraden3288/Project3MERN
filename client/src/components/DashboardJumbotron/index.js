@@ -4,9 +4,14 @@ import {
     Container
 } from 'reactstrap';
 
-function DashboardJumbotron(props) {
-    return (
-        <Jumbotron fluid>
+class DashboardJumbotron extends Component {
+render() {
+    var styles ={
+        "backgroundImage": 'url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg")',
+      }
+ 
+      return (
+        <Jumbotron fluid style={styles}>
             <Container fluid>
                 <h1 className="display-3">Welcome, {props.children}</h1>
                 <p className="lead">Here you can view open requests and change your availability.</p>
@@ -14,6 +19,7 @@ function DashboardJumbotron(props) {
         </Jumbotron>
     )
 };
+}
 
 export default DashboardJumbotron;
 
