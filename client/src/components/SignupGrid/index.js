@@ -49,8 +49,8 @@ class SignUpGrid extends React.Component {
   };
 
   signup = userInfo => {
-    // return API.registerUser(userInfo).then(user => {
-    return axios.post("/api/auth/register", userInfo).then(user => {
+    return API.registerUser(userInfo).then(user => {
+      // return axios.post("/api/auth/register", userInfo).then(user => {
       console.log("User successfully registered", user);
       window.location.href = "/";
     });
