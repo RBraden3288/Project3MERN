@@ -1,254 +1,76 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import NavigationBar from '../components/Navbar/';
-import Grid from '../components/Login_SignUpGrid/'
+import React, { Component } from "react";
+import axios from "axios";
+import NavigationBar from "../components/Navbar/";
+import SignUpGrid from "../components/SignupGrid";
+import auth from "../utils/auth";
+
+import "../index.css";
+
 import {
-    Container,
-    Col,
-    Row,
-    Label,
-    Input,
-    Button,
-    FormText
-} from 'reactstrap';
-import { callbackify } from 'util';
+  Container,
+  Col,
+  Row,
+  Label,
+  Input,
+  Button,
+  FormText
+} from "reactstrap";
+import { callbackify } from "util";
 
-class Signup extends React.Component {
-    constructor(props) {
-        super(props);
+// const Signup = props => {
+class Signup extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            // newUser: {
-            // this will hold an array of objects identifying the user
-            firstName: "",
-            lastName: "",
-            email: this.props.location.state.emailInput,
-            neighborhood: "",
-            residence: "",
-            entryway: "",
-            password: "",
-            bio: "",
-            skills: "",
-            photo_url: ""
-            // }
-        };
-        console.log(this.state.firstName)
+    this.state = {};
 
-        //bind the methods to "this"
-        this.handleChange = this.handleChange.bind(this);
+    //bind the methods to "this"
+    // this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    // check to see if there is a token (i.e. if the user has already logged in)
+    // if so, set the current user to be this user using their token
+    // (i.e. run the current user function --
+    // which will decode the user's token from localStorage or return null
+    // --> if this returns a truthy value (meaning there's a current user)
+    // --> authorize the user's requests using their token
+    var token = auth.getJwt();
+
+    if (token) {
+      console.log("Here are my props:", this.props);
+      auth.setAuthHeader(token);
+      // console.log(token.exp);
+      var currentUser = auth.getCurrentUser();
+      console.log(currentUser);
+
+      // this.setState(currentUser);
+      window.location.href = "/dashboard/:id";
+      // this.props.history.push("/about");
     }
-    //event handlers and functions to handle form submission
-    handleChange = event => {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value,
-        })
-    }
+  }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(`Form submitted: `, this.state);
-        // submit to backend to save might send you a token instead
-        // this should come from App.js
-        // this.props.logIn(<user obj from mongo>);
-        
-        //send an http post request to the backend
-        //a new object that contains the values coming from the form
-        const newUserSignup = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.props.location.state.emailInput,
-            neighborhood: this.state.neighborhood,
-            residence: this.state.residence,
-            entryway: this.state.entryway,
-            password: this.state.password,
-            bio: this.state.bio,
-            skills: this.state.skills,
-            photo_url: this.state.photo_url
-        }
+  //event handlers and functions to handle form submission
+  // handleChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
-        //path using server.js localhost path?
-        //url??:URL PATH END POINT THAT CONTAINS INCOMING POST REQUEST  /dashboard/ + newUserSignup??
-        axios.post('http://localhost:3001/dashboard', newUserSignup)
-            .then(res => console.log(res.data));
-    }
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   console.log(`Form submitted: `, this.state);
+  // };
 
-
-    render() {
-        return (
-            <div>
-                <NavigationBar />
-                <Container>
-                    <form onSubmit={this.handleSubmit}>
-                        <Row>
-                            <Col xs='6'>
-                                <Label>First Name
-                    <Input
-                                        type="text"
-                                        name="firstName"
-                                        value={this.state.firstName}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                            <Col xs='6'>
-                                <Label>Last Name
-                    <Input
-                                        type="text"
-                                        name="lastName"
-                                        value={this.state.lastName}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs="6">
-                                <Label>Email
-                        <Input
-                                        type="email"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                            <Col xs="6">
-                                <Label>Choose Your Neighborhood
-
-                <Input
-                                        value={this.state.neighborhood}
-                                        onChange={this.handleChange}
-                                        type="select"
-                                        name="neighborhood" >
-                                        <option>Fisherman&apos;s Wharf</option>
-                                        <option>North Beach</option>
-                                        <option>Chinatown</option>
-                                        <option>Embarcadero &#47; Financial District</option>
-                                        <option>SOMA &#47; Yerba Buena</option>
-                                        <option>Union Square</option>
-                                        <option>Central Market</option>
-                                        <option>Castro &#47; Noe Valley</option>
-                                        <option>Civic Center &#47; Hayes Valley</option>
-                                        <option>Haight&#45;Ashbury</option>
-                                        <option>Fillmore</option>
-                                        <option>Japantown</option>
-                                        <option>Nob Hill</option>
-                                        <option>Marina &#47; Pacific Heights</option>
-                                        <option>Presidio &#47; Richmond</option>
-                                        <option>Sunset</option>
-                                        <option>Bayview</option>
-                                        <option>Treasure Island</option>
-                                        <option>Mission District</option>
-
-                                    </Input>
-                                </Label>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs="6">
-                                <Label>Residence Type
-
-                <Input
-                                        value={this.state.residence}
-                                        onChange={this.handleChange}
-                                        type="select"
-                                        name="residence" >
-                                        <option>Entire home</option>
-                                        <option>Flat</option>
-                                        <option>Apartment&#47;Condo</option>
-                                    </Input>
-                                </Label>
-                            </Col>
-                            <Col xs="6">
-                                <Label>Entry Type
-                <Input
-                                        value={this.state.entryway}
-                                        onChange={this.handleChange}
-                                        type="select"
-                                        name="entryway" >
-                                        <option>Key&#47;Lockbox</option>
-                                        <option>Doorman&#47;Property Manager</option>
-                                        <option>Keyless&#47;Remote&#47;App</option>
-                                    </Input>
-                                </Label><FormText color="muted">Examples of keyless entry ways include: Nest, Fingerprint, August, etc.</FormText>
-                            </Col>
-                        </Row>
-                        <br />
-                        <Row>
-                            <Col xs="6">
-                                <Label>About me
-                        <Input
-                                        type="textarea"
-                                        name="bio"
-                                        placeholder="Tells us about yourself."
-                                        value={this.state.bio}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                            <Col xs="6">
-                                <Label>Skills and Credentials
-                        <Input
-                                        type="textarea"
-                                        name="skills"
-                                        placeholder="e.g. Driver license, green thumb, pet allergies"
-                                        value={this.state.skills}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Label>Photo URL
-                    <FormText color="muted">
-                                        Link and share a URL of your image from an image hosting and sharing service.
-                   </FormText>
-                                    <Input
-                                        type="url"
-                                        name="photo_url"
-                                        value={this.state.photo_url}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs="6">
-                                <Label>Password
-                        <Input
-                                        type="text"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                            <Col xs="6">
-                                <Label>Verify password
-                        <Input
-                                        type="text"
-                                        name="verifypassword"
-                                        value={this.state.password}
-                                        onChange={this.handleChange}
-                                    />
-                                </Label>
-                            </Col>
-                        </Row>
-                        <br />
-                        <Row>
-                            <Col sm={{ offset: 7 }}>
-                                <Button type="submit" value="Submit" outline color="success">Create my account!</Button>
-                            </Col>
-                        </Row>
-                    </form>
-                </Container>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <NavigationBar />
+        <SignUpGrid {...this.props} />
+      </div>
+    );
+  }
 }
 
 export default Signup;
