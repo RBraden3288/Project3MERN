@@ -2,14 +2,18 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import auth from "../../utils/auth";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, render, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       // var test = auth.getJwt();
       // console.log(auth.getJwt())
       auth.getJwt() ? (
-        <Component {...props} />
+        render ? (
+          render(props)
+        ) : (
+          <Component {...props} />
+        )
       ) : (
         <Redirect
           to={{

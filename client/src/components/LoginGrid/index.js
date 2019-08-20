@@ -50,32 +50,32 @@ class LoginGrid extends React.Component {
   //   });
   // };
 
-  componentDidMount() {
-    // check to see if there is a token (i.e. if the user has already logged in)
-    // if so, set the current user to be this user using their token
-    // (i.e. run the current user function --
-    // which will decode the user's token from localStorage or return null
-    // --> if this returns a truthy value (meaning there's a current user)
-    // --> authorize the user's requests using their token
-    var token = auth.getJwt();
+  // componentDidMount() {
+  //   // check to see if there is a token (i.e. if the user has already logged in)
+  //   // if so, set the current user to be this user using their token
+  //   // (i.e. run the current user function --
+  //   // which will decode the user's token from localStorage or return null
+  //   // --> if this returns a truthy value (meaning there's a current user)
+  //   // --> authorize the user's requests using their token
+  //   var token = auth.getJwt();
 
-    if (token) {
-      console.log("Here are my props:", this.props);
-      auth.setAuthHeader(token);
-      // console.log(token.exp);
-      var currentUser = auth.getCurrentUser();
-      console.log(currentUser);
+  //   if (token) {
+  //     console.log("Here are my props:", this.props);
+  //     auth.setAuthHeader(token);
+  //     // console.log(token.exp);
+  //     var currentUser = auth.getCurrentUser();
+  //     console.log(currentUser);
 
-      // this.setState(currentUser);
-      window.location.href = "/dashboard/:id";
-      // this.props.history.push("/about");
-    } else if (currentUser && currentUser.exp < Date.now() / 1000) {
-      auth.logOutUser();
-      window.location.href = "/";
-    } else {
-      console.log("User is not logged in");
-    }
-  }
+  //     // this.setState(currentUser);
+  //     window.location.href = "/dashboard/:id";
+  //     // this.props.history.push("/about");
+  //   } else if (currentUser && currentUser.exp < Date.now() / 1000) {
+  //     auth.logOutUser();
+  //     window.location.href = "/";
+  //   } else {
+  //     console.log("User is not logged in");
+  //   }
+  // }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -85,22 +85,22 @@ class LoginGrid extends React.Component {
   };
 
   // <<<<<<< HEAD
-  login = userInfo => {
-    return auth.logUserIn(userInfo).then(user => {
-      // set user state
-      this.setState({ user });
-      console.log("User is logged in");
-      window.location.href = "dashboard/:id";
-      // this.props.history.push("/dashboard" + user._id);
-      // this.setState({ user, redirectToReferrer: true });
-    });
-  };
+  // login = userInfo => {
+  //   return auth.logUserIn(userInfo).then(user => {
+  //     // set user state
+  //     this.setState({ user });
+  //     console.log("User is logged in");
+  //     window.location.href = "dashboard/:id";
+  //     // this.props.history.push("/dashboard" + user._id);
+  //     // this.setState({ user, redirectToReferrer: true });
+  //   });
+  // };
 
   handleLogIn = event => {
     event.preventDefault();
     console.log(`Email signup: `, this.state);
     console.log("this.props", this.props);
-    this.login(this.state).catch(err => {
+    this.props.login(this.state).catch(err => {
       // console.log("jasa's app doesnt log me in", err.response);
       console.log("jasa's app doesnt log me in", err);
       // const errors = err.response.data;

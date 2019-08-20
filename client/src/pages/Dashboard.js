@@ -29,37 +29,36 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      requests: [],
-      user: null
+      requests: []
     };
   }
 
-  componentDidMount() {
-    // axios.get("/").then(res => console.log(res.data));
+  // componentDidMount() {
+  //   // axios.get("/").then(res => console.log(res.data));
 
-    var token = auth.getJwt();
+  //   var token = auth.getJwt();
 
-    if (!token) {
-      console.log("User not logged in");
-      window.location.href = "/";
-    } else if (token) {
-      // console.log("Here are my props:", this.props);
-      auth.setAuthHeader(token);
-      // console.log(token.exp);
-      var currentUser = auth.getCurrentUser();
-      console.log("the current user is", currentUser);
+  //   if (!token) {
+  //     console.log("User not logged in");
+  //     window.location.href = "/";
+  //   } else if (token) {
+  //     // console.log("Here are my props:", this.props);
+  //     auth.setAuthHeader(token);
+  //     // console.log(token.exp);
+  //     var currentUser = auth.getCurrentUser();
+  //     console.log("the current user is", currentUser);
 
-      this.setState({ user: this.currentUser });
-      // console.log(this.state);
-    } else if (currentUser.exp < Date.now() / 1000 || token === null) {
-      auth.logOutUser();
-    } else {
-      console.log("User is not logged in");
-    }
+  //     this.setState({ user: this.currentUser });
+  //     // console.log(this.state);
+  //   } else if (currentUser.exp < Date.now() / 1000 || token === null) {
+  //     auth.logOutUser();
+  //   } else {
+  //     console.log("User is not logged in");
+  //   }
 
-    // window.location.href = "/dashboard/:id";
-    // this.props.history.push("/about");
-  }
+  //   // window.location.href = "/dashboard/:id";
+  //   // this.props.history.push("/about");
+  // }
 
   // componentDidMount(){
   //   // axios.get('/api/requests/' + passportuserID).then((result) => {
@@ -103,7 +102,7 @@ class Dashboard extends Component {
         <UserNavBar />
         <Jumbotron fluid style={styles}>
           <Container fluid>
-            <h1 className="display-3">Welcome, Neighbor!</h1>
+            <h1 className="display-3">Welcome, {this.props.user.firstName}</h1>
             {/* <h1 className="display-3">Welcome, {this.state.user.firstName}</h1> */}
             <p className="lead">
               Here you can view open requests and change your availability.
