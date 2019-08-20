@@ -29,23 +29,37 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // UPDATE request made
-  updateRequest: function(req, res) {
-    db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
+  // // UPDATE request made
+  // updateRequest: function(req, res) {
+  //   db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
+  // // DELETE request
+  // removeRequest: function(req, res) {
+  //   db.Request.findById({ _id: req.params.id })
+  //     .then(dbModel => dbModel.remove())
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
+  // READ all requests a client submitted
+  getUserRequests: function(req, res) {
+    console.log("Here you go", req.params);
+    db.Request.find(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // DELETE request
-  removeRequest: function(req, res) {
-    db.Request.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+  removeUserRequest: function(req, res) {
+    console.log("Removing", req.params);
+    db.Request.remove(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // READ all requests a client submitted
-  getUsersRequests: function(req, res) {
-    console.log("Here you go", req.params);
-    db.Request.find(req.params)
+  // UPDATE request made
+  updateUserRequests: function(req, res) {
+    console.log("Updating", req.params);
+    db.Request.findOneAndUpdate(req.params)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

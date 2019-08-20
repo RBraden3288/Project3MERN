@@ -14,12 +14,17 @@ router
 
 // DASHBOARD
 // CREATE, UPDATE, DELETE REQUESTS
-router
-  .route("/:id")
-  .get(requestsControllers.findByRequestId)
-  .put(requestsControllers.updateRequest)
-  .delete(requestsControllers.removeRequest);
+// router
+//   .route("/:id")
+//   .get(requestsControllers.findByRequestId)
+//   .put(requestsControllers.updateRequest)
+//   .delete(requestsControllers.removeRequest);
 
-router.route("/userID/:userID").get(requestsControllers.getUsersRequests);
+// DASHBOARD
+router
+  .route("/userID/:userID")
+  .get(requestsControllers.getUserRequests)
+  .put(requestsControllers.updateUserRequests)
+  .delete(requestsControllers.removeUserRequest);
 
 module.exports = router;
