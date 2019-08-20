@@ -78,20 +78,20 @@ class Dashboard extends Component {
       fontSize: "18px"
     };
 
-    // //LOAD USERS from utils/API
+    //LOAD USERS from utils/API
     // loadUser = () => {
     //   API.getUser()
     //   .then(res => this.setState({ users: res.data }))
     //   .catch(err => console.log(err));
     // }
-    // //LOAD REQUESTS from utils/API
-    // loadUserRequests = () => {
-    //   API.getRequest()
-    //   .then(res => this.setState({ requests: res.data }))
-    //   .catch(err => console.log(err));
-    // }
+    //LOAD REQUESTS from utils/API
+    loadUserRequests = () => {
+      API.getRequest()
+        .then(res => this.setState({ requests: res.data }))
+        .catch(err => console.log(err));
+    };
 
-    //Mount users and requests
+    // Mount users and requests
     // componentDidMount() {
     //   this.loadUser();
     //   this.loadUserRequests();

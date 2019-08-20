@@ -14,6 +14,7 @@ module.exports = {
   //   res.status(200);
   // },
   // READ requests from the Request Collection
+  // FOR TESTING
   findAllRequests: function(req, res) {
     console.log("db.Request", db.Request);
     db.Request.find(req.query)
@@ -22,31 +23,20 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   // READ a specific request
+  // TESTING
   findByRequestId: function(req, res) {
     db.Request.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // CREATE request using Request Form
+  // CREATE request using Request Form -- NEEDS UPDATE TO BE ASSOC WITH USER (FOR REFERENCE)
   createRequest: function(req, res) {
     db.Request.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // // UPDATE request made
-  // updateRequest: function(req, res) {
-  //   db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // // DELETE request
-  // removeRequest: function(req, res) {
-  //   db.Request.findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // READ all requests a client submitted
+
+  // READ all requests a client submitted -- needs to account for user ID
   getUserRequests: function(req, res) {
     console.log("Here you go", req.params);
     db.Request.find(req.params)
@@ -56,17 +46,29 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  // DELETE request
+  // DELETE request -- IDEAL to have user ID added
+  // removeUserRequest: function(req, res) {
+  //   console.log("Removing", req.params);
+  //   db.Request.remove(req.params)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
+  // // DELETE request -- ESSENTIAL version
   removeUserRequest: function(req, res) {
-    console.log("Removing", req.params);
-    db.Request.remove(req.params)
+    db.Request.findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // UPDATE request made
-  updateUserRequests: function(req, res) {
-    console.log("Updating", req.params, req.body);
-    db.Request.findOneAndUpdate(req.params, req.body)
+  // UPDATE request made -- IDEAL to have user ID also added
+  // updateUserRequests: function(req, res) {
+  //   console.log("Updating", req.params, req.body);
+  //   db.Request.findOneAndUpdate(req.params, req.body)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // UPDATE request made -- ESSENTIAL VERSION
+  updateUserRequest: function(req, res) {
+    db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
