@@ -9,9 +9,9 @@ const router = require("express").Router();
 // GET ALL USER'S REQS
 router.route("/userID/:userID").get(requestsControllers.getUserRequests);
 
-// UPDATE, DELETE REQUESTS
+// CREATE, UPDATE, DELETE REQUESTS
 router
-  .route("/userID/:userID/:requestID")
+  .route("/userID/:userID")
   .put(requestsControllers.updateUserRequests)
   .delete(requestsControllers.removeUserRequest);
 
