@@ -9,6 +9,10 @@ const db = require("../models");
 
 // (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
+  // test: function(req, res) {
+  //   console.log("test*");
+  //   res.status(200);
+  // },
   // READ requests from the Request Collection
   findAllRequests: function(req, res) {
     console.log("db.Request", db.Request);
@@ -46,7 +50,10 @@ module.exports = {
   getUserRequests: function(req, res) {
     console.log("Here you go", req.params);
     db.Request.find(req.params)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        console.log("dbModel", dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
   // DELETE request
@@ -58,8 +65,8 @@ module.exports = {
   },
   // UPDATE request made
   updateUserRequests: function(req, res) {
-    console.log("Updating", req.params);
-    db.Request.findOneAndUpdate(req.params)
+    console.log("Updating", req.params, req.body);
+    db.Request.findOneAndUpdate(req.params, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

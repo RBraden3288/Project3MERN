@@ -67,8 +67,8 @@ const usersSeed = [
   }
 ];
 
-db.Users.deleteMany({})
-  .then(() => db.Users.insertMany(usersSeed))
+db.User.deleteMany({})
+  .then(() => db.User.insertMany(usersSeed))
   .then(data => {
     console.log(data + " users inserted!");
     process.exit(0);
