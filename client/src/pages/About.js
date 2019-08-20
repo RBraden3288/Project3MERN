@@ -1,10 +1,8 @@
-import React from 'react';
-import NavigationBar from '../components/Navbar';
+import React from "react";
+import NavigationBar from "../components/Navbar";
 
-const About = (props) => {
-    return (
-        <NavigationBar />
-    )
-}
+const About = props => {
+  return <NavigationBar />;
+};
 
 export default About;

@@ -13,6 +13,8 @@ const morgan = require("morgan");
 const passport = require("passport");
 // Initializing our instance of express
 const app = express();
+// relative path module needed for heroku deploy
+const path = require("path");
 
 // Calling the morgan dependency for error logging
 app.use(morgan("dev"));
@@ -73,6 +75,20 @@ mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
+
+// HEROKU CODE - needs to be below routes so doesn't override routes
+// this checks if our app is currently in production (aka on Heroku)
+// process.env.NODE_ENV is an environment var from heroku
+// if yes, we are bringing the React app's server into our server
+// do this by creating a build folder inside of our client folder, and invoking that here
+// next line says that any routes that user goes that's not related to specified routes, will take them to the React app/send them the HTML file
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // ---------------- START API SERVER ----------------
 app.listen(PORT, function() {

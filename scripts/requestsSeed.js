@@ -66,8 +66,8 @@ const requestsSeed = [
   }
 ];
 
-db.Requests.deleteMany({})
-  .then(() => db.Requests.insertMany(requestsSeed))
+db.Request.deleteMany({})
+  .then(() => db.Request.insertMany(requestsSeed))
   .then(data => {
     console.log(data + " requests inserted!");
     process.exit(0);

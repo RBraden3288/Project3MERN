@@ -5,21 +5,30 @@ const router = require("express").Router();
 
 // "/" is the equivalent of api/requests
 
-// FOR REQUEST FORM
-// READ REQUESTS, CREATE (NEW) REQUEST
+// DASHBOARD
+// GET ALL USER'S REQS
+router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+
+// UPDATE, DELETE REQUESTS
 router
-  .route("/")
-  .get(requestsControllers.findAllRequests)
+  .route("/userID/:userID/:requestID")
+  .put(requestsControllers.updateUserRequests)
+  .delete(requestsControllers.removeUserRequest);
+
+// FOR REQUEST FORM
+// READ REQUESTS --FOR TESTING (COMMENTED OUT),
+// CREATE (NEW) REQUEST
+router
+  .route("/:userID")
+  // .get(requestsControllers.findAllRequests)
   .post(requestsControllers.createRequest);
 
-// DASHBOARD
-// CREATE, UPDATE, DELETE REQUESTS
-router
-  .route("/:id")
-  .get(requestsControllers.findByRequestId)
-  .put(requestsControllers.updateRequest)
-  .delete(requestsControllers.removeRequest);
+// router
+//   .route("/:id")
+//   .get(requestsControllers.findByRequestId)
+//   .put(requestsControllers.updateRequest)
+//   .delete(requestsControllers.removeRequest);
 
-router.route("/userID/:userID").get(requestsControllers.getUsersRequests);
+// DASHBOARD
 
 module.exports = router;
