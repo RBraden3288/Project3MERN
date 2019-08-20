@@ -8,7 +8,8 @@ import {
   Route,
   Switch,
   Link,
-  Redirect
+  Redirect,
+  withRouter
 } from "react-router-dom";
 
 import Login from "../src/pages/Login";
@@ -44,8 +45,8 @@ import jwtDecode from "jwt-decode";
 // );
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // state to be used for app set here
     // user of course for user data
     // redirectToReferrer is a boolean
@@ -76,32 +77,44 @@ class App extends Component {
         auth.logOutUser();
         window.location.href = "/";
         // more logic here for currentUser?
+      } else {
+        console.log("before");
+        return this.setUser(currentUser);
+        // this.login(currentUser).catch(err =>
+        //   console.log("jasa caused this error", err)
+        // );
       }
-      this.setState(currentUser);
     } else {
       console.log("User is not logged in");
     }
+  }
 
-    // let userLogin = await API.get('/login??', {
-    //   params: {
-    //     email: ??,
-    //     password: ??,
-    //   }
-    // })
+  login = ({ email, password }) => {
+    // make axios login call
+    return auth
+      .logUserIn({
+        email,
+        password
+      })
+      .then(user => {
+        this.setUser(user);
+      });
+    // store token
+    // redirect to dashboard
+  };
 
-    //   async componentDidMount() {
-    //     axios.get('/api/users')
-    //   }
-
-    //    //testing
-    // state = {
-    //   // import user info from db
-    //   user: []
+  setUser(user) {
+    this.setState({ user }, () => {
+      console.log("after");
+      // window.location.href = `/dashboard/${user.id}`;
+      this.props.history.push("/dashboard/" + user.id);
+    });
   }
 
   render() {
+    console.log("is logged in", this.state.user);
     return (
-      <Router>
+      <div>
         <div className="App">
           {/* element from react-router-dom that requires two parameters
           path with the URL extension AND with the exact attribute of the component */}
@@ -112,14 +125,21 @@ class App extends Component {
             <PrivateRoute path="/requestform" exact component={Form} />
             {/* testing environments for dashboard and results routes */}
             {/* pass a default id parameter in the URL to view testing environment */}
-            <PrivateRoute path="/dashboard/:id" exact component={Dashboard} />
+            <PrivateRoute
+              path="/dashboard/:id"
+              exact
+              render={props => <Dashboard {...props} user={this.state.user} />}
+            />
             <PrivateRoute path="/results/:id" exact component={Results} />
-            <Route path="/" render={props => <Login {...this.props} />} />
+            <Route
+              path="/"
+              render={props => <Login {...props} login={this.login} />}
+            />
             {/* catch all page - when they try to navigate to a nonexistent page via a nonexistent route */}
             <Route component={NoMatch} />
           </Switch>
         </div>
-      </Router>
+      </div>
 
       // <Router>
       //   {/* element from react-router-dom that requires two parameters
@@ -138,4 +158,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default withRouter(App);
