@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import UserNavBar from "../components/UserNavBar";
@@ -12,6 +12,7 @@ import {
   Col,
   FormText
 } from 'reactstrap';
+import RequestFormInput from "../components/RequestFormInput";
 
 class Form extends React.Component {
   constructor(props) {
@@ -47,21 +48,20 @@ class Form extends React.Component {
     //bind methods to this
     this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-  };
-
+  }
 
   // handle change for dates
   handleChange = event => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     this.setState({
-      [name]: value,
-    })
+      [name]: value
+    });
   };
 
   //handle event changes for checked items
   handleInputChange = event => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -69,15 +69,12 @@ class Form extends React.Component {
     });
   };
 
-
   handleSubmit = event => {
     event.preventDefault();
     console.log(`Request form submitted: `, this.state);
 
     //handle a post request for adding form to db
-    axios.
-      post("/api/requests", this.state)
-      .then(res => console.log(res.data));
+    axios.post("/api/requests", this.state).then(res => console.log(res.data));
   };
 
   render() {
@@ -428,8 +425,7 @@ class Form extends React.Component {
           </form>
         </Container>
       </div>
-
-    )
+    );
   }
 }
 

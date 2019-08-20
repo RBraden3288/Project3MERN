@@ -7,11 +7,11 @@ const secretOrKey = process.env.secretOrKey;
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.secretOrKey;
+opts.secretOrKey = secretOrKey;
 
 module.exports = passport => {
     passport.use(
-        newJwtStrategy(opts, (jwt_payload, done) => {
+        new JwtStrategy(opts, (jwt_payload, done) => {
             Users.findById(jwt_payload.id)
             .then(user => {
                 if (user) {

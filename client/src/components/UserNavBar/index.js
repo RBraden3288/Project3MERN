@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
-import './style.css'
+import "./style.css";
 import {
   Collapse,
   Navbar,
@@ -13,7 +13,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from 'reactstrap';
+} from "reactstrap";
+import auth from "../../utils/auth";
 
 export default class UserNavBar extends React.Component {
   constructor(props) {
@@ -29,6 +30,11 @@ export default class UserNavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  logOut = () => {
+    console.log("Bye bye user");
+    auth.logOutUser();
+    window.location.href = "/";
+  };
   render() {
     return (
       <div>
@@ -49,12 +55,12 @@ export default class UserNavBar extends React.Component {
                     <Link to="/requestform">Submit a request</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={"/dashboard/" + ["DATABASENAME.USERSID"]}>View requests</Link>
+                    <Link to={"/dashboard/" + ["DATABASENAME.USERSID"]}>
+                      View requests
+                    </Link>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Logout
-                  </DropdownItem>
+                  <DropdownItem onClick={this.logOut}>Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -64,4 +70,3 @@ export default class UserNavBar extends React.Component {
     );
   }
 }
-

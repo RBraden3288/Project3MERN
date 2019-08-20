@@ -59,11 +59,10 @@ export default class Grid extends React.Component {
                                     </FormGroup>
                                     <button className='button'>
                                         <Link to={"/dashboard/"
-                                            // + [USERID]
                                         }>Submit</Link>
                                     </button>
                                     <button className='button'>
-                                        <Link to={"/requestform" 
+                                        <Link to={"/signup" 
                                         }>SignUp</Link>
                                     </button>
                                 </Form>
