@@ -37,6 +37,34 @@ const requestsSeed = [
     date: Date()
   },
   {
+    userID: "5d508c2b183daa32fd4b8706",
+    requestTitle: "Arubaaaa",
+    startDate: "09/01/2019",
+    endDate: "09/11/2019",
+    tasks: {
+      dust: false,
+      vaccuum: true,
+      temp: false,
+      timers: false,
+      mail: true,
+      packages: true,
+      yardwork: false,
+      trash: false,
+      moveCar: false,
+      moveMC: false,
+      moveMP: false,
+      moveOS: true,
+      playCat: false,
+      feedCat: false,
+      litter: false,
+      feedCritter: false,
+      cleanCritTank: false,
+      feedFish: false,
+      cleanFishTank: false
+    },
+    date: Date()
+  },
+  {
     userID: "5d508c2b183daa32fd4b8707",
     requestTitle: "LA Day Trip",
     startDate: "08/15/2019",

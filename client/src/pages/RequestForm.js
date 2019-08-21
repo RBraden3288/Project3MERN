@@ -62,7 +62,7 @@ class Form extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(`Request form submitted: `, this.state);
-
+    console.log(this.state);
     //handle a post request for adding form to db
     axios.post("/api/requests", this.state).then(res => console.log(res.data));
   };
