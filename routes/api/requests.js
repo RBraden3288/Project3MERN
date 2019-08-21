@@ -6,18 +6,21 @@ const router = require("express").Router();
 // "/" is the equivalent of api/requests
 
 // DASHBOARD
+// GET ALL USER'S REQS
+router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+
 // CREATE, UPDATE, DELETE REQUESTS
 router
   .route("/userID/:userID")
-  .get(requestsControllers.getUserRequests)
   .put(requestsControllers.updateUserRequests)
   .delete(requestsControllers.removeUserRequest);
 
 // FOR REQUEST FORM
-// READ REQUESTS, CREATE (NEW) REQUEST
+// READ REQUESTS --FOR TESTING (COMMENTED OUT),
+// CREATE (NEW) REQUEST
 router
-  .route("/")
-  .get(requestsControllers.findAllRequests)
+  .route("/:userID")
+  // .get(requestsControllers.findAllRequests)
   .post(requestsControllers.createRequest);
 
 // router

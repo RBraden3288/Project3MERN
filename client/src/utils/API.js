@@ -1,5 +1,3 @@
-// we'll be requiring axios
-
 import axios from "axios";
 
 // If we were, then it'd look something like...
@@ -12,25 +10,30 @@ import axios from "axios";
 export default {
   //login/ sign in already created in utils/auth.js logUserIn(), signIn
   //save user to db
-  ["Method"]: function(user_id) {
-    return axios.post("/" + user_id);
-  },
+  // ["Method"]: function(user_id) {
+  //   return axios.post("/" + user_id);
+  // },
   //get user by id
-  getUser: function(id) {
-    return axios.get("/api/users" + id);
-  },
+  // getUser: function(id) {
+  //   return axios.get("/api/users" + id);
+  // },
   //save user's request to db
-  ["Method"]: function(request_id) {
-    return axios.post("/api/[link end point]" + request_id);
+  createRequest: function() {
+    return axios.post("/api/requests/");
   },
   //get request by id
-  getRequest: function(id) {
-    return axios.get("/api/[link end point]" + id);
+  getRequest: function(user_id) {
+    return axios.get("/api/requests/userID/" + user_id);
   },
   //delete a request
-  deleteRequest: function(id) {
-    return axios.delete("/api/requests" + id);
+  deleteRequest: function(user_id, request_id) {
+    return axios.delete("/api/requests/userID/" + user_id + "/" + request_id);
   },
+  // update a request
+  updateRequest: function(user_id, request_id) {
+    return axios.put("/api/requests/userID/" + user_id + "/" + request_id);
+  },
+  // AUTH
   signInUser: function(userInfo) {
     return axios.post("/api/auth/login", userInfo);
   },
