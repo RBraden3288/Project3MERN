@@ -3,32 +3,37 @@
 const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
 
-// "/" is the equivalent of api/requests
+// NOTE: "/" is the equivalent of api/requests
 
-// DASHBOARD
-// GET ALL USER'S REQS
-router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+// --------------------------- REQUEST FORM --------------------------
+// READ ALL REQUESTS
+router.route("/").get(requestsControllers.findAllRequests);
+// .post(requestsControllers.createRequest);
 
-// UPDATE, DELETE REQUESTS
+// CREATE A NEW REQUEST
+// See createRequest.
+// ----------------------------- DASHBOARD ----------------------------
+// READ, UPDATE, AND DELETE A SINGLE REQUEST
 router
-  .route("/userID/:userID/:requestID")
-  .put(requestsControllers.updateUserRequests)
-  .delete(requestsControllers.removeUserRequest);
+  // .route("/:id")
+  .route("/:requestID")
+  .get(requestsControllers.findByRequestId)
+  .put(requestsControllers.updateRequest)
+  .delete(requestsControllers.removeRequest);
 
-// FOR REQUEST FORM
-// READ REQUESTS --FOR TESTING (COMMENTED OUT),
-// CREATE (NEW) REQUEST
+// READ ALL REQUESTS BY A USER ... and CREATE A REQUEST
+// router.route("/userID/:userID").get(requestsControllers.getUserRequests);
 router
-  .route("/:userID")
-  // .get(requestsControllers.findAllRequests)
+  .route("/:userID/requests")
+  .get(requestsControllers.getUserRequests)
   .post(requestsControllers.createRequest);
 
-// router
-//   .route("/:id")
-//   .get(requestsControllers.findByRequestId)
-//   .put(requestsControllers.updateRequest)
-//   .delete(requestsControllers.removeRequest);
-
-// DASHBOARD
-
 module.exports = router;
+
+// CREATE, UPDATE, DELETE REQUESTS
+// needs to be more specific so it references both userID and request ID ("/userID/:userID/:requestID")
+// router
+//   .route("/userID/:userID/")
+//   .get(requestsControllers.getUserRequests)
+//   .put(requestsControllers.updateUserRequests)
+//   .delete(requestsControllers.removeUserRequest);

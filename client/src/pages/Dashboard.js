@@ -9,7 +9,6 @@ import {
   FormGroup,
   Label,
   CustomInput,
-  Badge
 } from "reactstrap";
 import "../index.css";
 import UserNavBar from "../components/UserNavBar";
@@ -89,8 +88,12 @@ class Dashboard extends Component {
   // }
   //LOAD REQUESTS from utils/API
   loadUserRequests = () => {
-    API.getRequest()
-      .then(res => this.setState({ requests: res.data }))
+
+    API.getUserRequests(this.props.user.id)
+      .then(res => {
+        console.log('dash res', res.data);
+        this.setState({ requests: res.data || [] })
+      })
       .catch(err => console.log(err));
   }
 
@@ -154,6 +157,7 @@ class Dashboard extends Component {
             </Col>
           </Row>
         </Container>
+
       </div>
     );
   }
