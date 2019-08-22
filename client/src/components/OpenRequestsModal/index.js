@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import API from '../../utils/API';
 import {
     Modal,
     ModalHeader,
@@ -15,7 +16,18 @@ class OpenRequestsModal extends React.Component {
             requests: []
         };
 
-        this.toggle = this.toggle.bind(this);
+        // this.handleUserRequests = this.handleUserRequests.bind(this);
+        // this.toggle = this.toggle.bind(this);
+    }
+
+    loadUserRequests() {
+        console.log("load user requests");
+        const request = {
+            request: this.state.message
+        }
+
+        API.getUserRequests()
+
     }
 
     toggle() {
@@ -27,7 +39,7 @@ class OpenRequestsModal extends React.Component {
     render() {
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         var btnStyles = {
-            "backgroundColor": "#4ABDAC",
+            "color": "#A9A9A9",
             "borderRadius": "5px",
             "height": "100px"
         };

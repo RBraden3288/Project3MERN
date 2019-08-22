@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import API from "../utils/API";
 import UserNavBar from "../components/UserNavBar";
 import {
   FormGroup,
