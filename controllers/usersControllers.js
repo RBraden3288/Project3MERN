@@ -50,13 +50,28 @@ module.exports = {
     db.Request.create(requestData)
       .then(dbModel => res.json(dbModel))
       .catch(err => {
-        console.log(err)
-        res.status(422).json(err)
+        console.log(err);
+        res.status(422).json(err);
       });
   },
+  // RACHEL -- MAKE SURE THIS WORKS
   getUserRequests: function(req, res) {
-    res.json(['fix me']);
+    console.log("Here you go", req.params);
+    db.User.find({ _id: req.params.id })
+      .then(dbModel => {
+        console.log("dbModel", dbModel);
+        res.json(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
   }
+
+  // CREATE a request
+  // createRequest: function(req, res) {
+  //   console.log("db.User", req.params);
+  //   db.User.create(req.params)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // }
 
   // Not sure if we'll need the following functions
   // These would be to delete a user or update their information
