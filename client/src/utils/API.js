@@ -18,21 +18,23 @@ export default {
   //   return axios.get("/api/users" + id);
   // },
   //save user's request to db
-  createRequest: function(requestData) {
-    console.log("data", requestData);
-    return axios.post("/api/requests/", requestData);
+  createRequest: function(user_id, request) {
+    return axios.post("/api/users/" + user_id + "/requests", request);
+  },
+  getUserRequests: function(user_id) {
+    return axios.get("/api/users/" + user_id + "/requests");
   },
   //get request by id
-  getRequest: function(id) {
-    return axios.get("/api/requests/" + id);
+  getRequest: function(requestid) {
+    return axios.get("/api/requests/" + requestid);
   },
   //delete a request
-  deleteRequest: function(id) {
-    return axios.delete("/api/requests/" + id + "/requests");
+  deleteRequest: function(requestid) {
+    return axios.delete("/api/requests/" + requestid);
   },
   // update a request
-  updateRequest: function(id) {
-    return axios.put("/api/requests/" + id);
+  updateRequest: function(requestid) {
+    return axios.put("/api/requests/" + requestid);
   },
   // AUTH
   signInUser: function(userInfo) {

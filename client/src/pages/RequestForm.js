@@ -13,7 +13,7 @@ import {
   Col,
   FormText
 } from 'reactstrap';
-import RequestFormInput from "../components/RequestFormInput";
+import "../index.css";
 
 var containerStyles = {
   margin: "100px",
@@ -34,7 +34,9 @@ var headerStyles = {
 };
 var formContainer ={
   backgroundColor: '#CAEBF2',
+  margin: '10px'
 };
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -95,9 +97,13 @@ class Form extends React.Component {
     console.log(`Request form submitted: `, this.state);
     console.log(this.state);
     //handle a post request for adding form to db
+     
     // axios.post("/api/requests", this.state).then(res => console.log(res.data));
-    API.createRequest()
-      .then(res => this.setState(res.data))
+    // API.createRequest()
+    //   .then(res => this.setState(res.data))
+    this.props.createRequest(this.state).catch((err) => {
+      console.error(err);
+    });
   };
 
   render() {
@@ -105,7 +111,7 @@ class Form extends React.Component {
       <div styles={containerStyles}>
         <UserNavBar />
         <br />
-        <Container>
+        <Container >
           <Row>
             <div style={headerStyles}>
               SUBMIT A REQUEST

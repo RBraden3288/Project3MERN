@@ -104,11 +104,23 @@ class App extends Component {
   };
 
   setUser(user) {
+    console.log(user)
     this.setState({ user }, () => {
       console.log("after");
       // window.location.href = `/dashboard/${user.id}`;
       this.props.history.push("/dashboard/" + user.id);
     });
+  }
+
+  // passing down mongoose id stored in the db with the user object
+  createRequest = (request) => {
+    const id = this.state.user.id;
+    return API
+      .createRequest(id, request)
+      .then(res => {
+        console.log(res);
+        this.props.history.push("/dashboard/" + id)
+      })
   }
 
   render() {
@@ -122,7 +134,7 @@ class App extends Component {
           <Switch>
             <Route path="/about" exact component={About} />
             <Route path="/signup" exact component={Signup} />
-            <PrivateRoute path="/requestform" exact component={Form} />
+            <PrivateRoute path="/requestform" exact render={(props) => <Form {...props} createRequest={this.createRequest} />} />
             {/* testing environments for dashboard and results routes */}
             {/* pass a default id parameter in the URL to view testing environment */}
             <PrivateRoute

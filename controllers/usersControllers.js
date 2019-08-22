@@ -37,21 +37,34 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  // CREATE a request
   createRequest: function(req, res) {
+    const userId = req.params.id;
     console.log("db.Request", req.body);
-    db.User.create(req.body)
+
+    const requestData = req.body;
+
+    // Link user id to request
+    requestData.userID = userId;
+
+    db.Request.create(requestData)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err);
+      });
   },
+  // RACHEL -- MAKE SURE THIS WORKS
   getUserRequests: function(req, res) {
     console.log("Here you go", req.params);
-    db.User.find(req.params)
+    db.User.find({ _id: req.params.id })
       .then(dbModel => {
         console.log("dbModel", dbModel);
         res.json(dbModel);
       })
       .catch(err => res.status(422).json(err));
   }
+
   // CREATE a request
   // createRequest: function(req, res) {
   //   console.log("db.User", req.params);
