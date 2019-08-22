@@ -36,6 +36,21 @@ module.exports = {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  createRequest: function(req, res) {
+    console.log("db.Request", req.body);
+    db.User.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  getUserRequests: function(req, res) {
+    console.log("Here you go", req.params);
+    db.User.find(req.params)
+      .then(dbModel => {
+        console.log("dbModel", dbModel);
+        res.json(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
   }
   // CREATE a request
   // createRequest: function(req, res) {

@@ -23,12 +23,12 @@ export default {
     return axios.post("/api/requests/", requestData);
   },
   //get request by id
-  getRequest: function(user_id) {
-    return axios.get("/api/requests/" + user_id);
+  getRequest: function(id) {
+    return axios.get("/api/requests/" + id);
   },
   //delete a request
   deleteRequest: function(id) {
-    return axios.delete("/api/requests/" + id);
+    return axios.delete("/api/requests/" + id + "/requests");
   },
   // update a request
   updateRequest: function(id) {

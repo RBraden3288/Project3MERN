@@ -18,6 +18,13 @@ router.route("/:id").get(usersControllers.findUserById);
 // to update a user...
 //   .put(usersControllers.updateUser);
 
+// -------------------------- REQUEST PAGE ------------------------------------------
+// READ ALL REQUESTS BY A USER ... and CREATE A REQUEST
+router
+  .route("/:userID/requests")
+  .get(usersControllers.getUserRequests)
+  .post(usersControllers.createRequest);
+
 // ------------------------------- MATCHING ------------------------------------------
 // Get all users that are in the same neighborhood as the current user
 router.get("/neighborhood/:neighborhood", usersControllers.findByNeighborhood);
