@@ -36,6 +36,26 @@ module.exports = {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  // CREATE a request
+  createRequest: function(req, res) {
+    const userId = req.params.id;
+    console.log("db.Request", req.body);
+
+    const requestData = req.body;
+
+    // Link user id to request
+    requestData.userID = userId;
+
+    db.Request.create(requestData)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => {
+        console.log(err)
+        res.status(422).json(err)
+      });
+  },
+  getUserRequests: function(req, res) {
+    res.json(['fix me']);
   }
 
   // Not sure if we'll need the following functions

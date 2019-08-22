@@ -3,32 +3,31 @@
 const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
 
-// "/" is the equivalent of api/requests
+// NOTE: "/" is the equivalent of api/requests
 
-// DASHBOARD
-// GET ALL USER'S REQS
-router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+// --------------------------- REQUEST FORM --------------------------
+// READ ALL REQUESTS
+router.route("/").get(requestsControllers.findAllRequests);
+// .post(requestsControllers.createRequest);
 
-// CREATE, UPDATE, DELETE REQUESTS
+
+// CREATE A NEW REQUEST
+// See createRequest.
+// ----------------------------- DASHBOARD ----------------------------
+// READ, UPDATE, AND DELETE A SINGLE REQUEST
 router
-  .route("/userID/:userID")
-  .put(requestsControllers.updateUserRequests)
-  .delete(requestsControllers.removeUserRequest);
-
-// FOR REQUEST FORM
-// READ REQUESTS --FOR TESTING (COMMENTED OUT),
-// CREATE (NEW) REQUEST
-router
-  .route("/:userID")
-  // .get(requestsControllers.findAllRequests)
-  .post(requestsControllers.createRequest);
-
-// router
-//   .route("/:id")
-//   .get(requestsControllers.findByRequestId)
-//   .put(requestsControllers.updateRequest)
-//   .delete(requestsControllers.removeRequest);
-
-// DASHBOARD
+  // .route("/:id")
+  .route("/:requestID")
+  .get(requestsControllers.findByRequestId)
+  .put(requestsControllers.updateRequest)
+  .delete(requestsControllers.removeRequest);
 
 module.exports = router;
+
+// CREATE, UPDATE, DELETE REQUESTS
+// needs to be more specific so it references both userID and request ID ("/userID/:userID/:requestID")
+// router
+//   .route("/userID/:userID/")
+//   .get(requestsControllers.getUserRequests)
+//   .put(requestsControllers.updateUserRequests)
+//   .delete(requestsControllers.removeUserRequest);
