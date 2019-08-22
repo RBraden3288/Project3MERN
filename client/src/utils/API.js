@@ -22,7 +22,7 @@ export default {
     return axios.post("/api/users/" + user_id + "/requests", request);
   },
   getUserRequests: function(user_id) {
-    return axios.get('/api/users/' + user_id + '/requests')
+    return axios.get("/api/users/" + user_id + "/requests");
   },
   //get request by id
   getRequest: function(requestid) {
