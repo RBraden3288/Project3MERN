@@ -21,13 +21,6 @@ router
   .put(requestsControllers.updateRequest)
   .delete(requestsControllers.removeRequest);
 
-// READ ALL REQUESTS BY A USER ... and CREATE A REQUEST
-// router.route("/userID/:userID").get(requestsControllers.getUserRequests);
-router
-  .route("/:userID/requests")
-  .get(requestsControllers.getUserRequests)
-  .post(requestsControllers.createRequest);
-
 module.exports = router;
 
 // CREATE, UPDATE, DELETE REQUESTS

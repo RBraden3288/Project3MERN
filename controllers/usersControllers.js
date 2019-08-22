@@ -55,7 +55,7 @@ module.exports = {
       });
   },
   getUserRequests: function(req, res) {
-    res.json(['hahaha']);
+    res.json(['fix me']);
   }
 
   // Not sure if we'll need the following functions

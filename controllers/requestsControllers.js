@@ -23,13 +23,6 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // CREATE request using Request Form
-  createRequest: function(req, res) {
-    console.log("db.Request", req.params);
-    db.Request.create(req.params)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
   // UPDATE request made
   updateRequest: function(req, res) {
     db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -43,26 +36,6 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  getUserRequests: function(req, res) {
-    console.log("Here you go", req.params);
-    db.Request.find(req.params)
-      .then(dbModel => {
-        console.log("dbModel", dbModel);
-        res.json(dbModel);
-      })
-      .catch(err => res.status(422).json(err));
-  }
-
-  // READ all requests a client submitted
-  // getUserRequests: function(req, res) {
-  //   console.log("Here you go", req.params);
-  //   db.Request.find(req.params)
-  //     .then(dbModel => {
-  //       console.log("dbModel", dbModel);
-  //       res.json(dbModel);
-  //     })
-  //     .catch(err => res.status(422).json(err));
-  // },
   // // DELETE request
   // removeUserRequest: function(req, res) {
   //   console.log("Removing", req.params);
