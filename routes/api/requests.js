@@ -3,9 +3,33 @@
 const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
 
-// "/" is the equivalent of api/requests
+// NOTE: "/" is the equivalent of api/requests
 
-// DASHBOARD
+// --------------------------- REQUEST FORM --------------------------
+// READ ALL REQUESTS
+router.route("/").get(requestsControllers.findAllRequests);
+// .post(requestsControllers.createRequest);
+
+// CREATE A NEW REQUEST
+// See createRequest.
+// ----------------------------- DASHBOARD ----------------------------
+// READ, UPDATE, AND DELETE A SINGLE REQUEST
+router
+  // .route("/:id")
+  .route("/:requestID")
+  .get(requestsControllers.findByRequestId)
+  .put(requestsControllers.updateRequest)
+  .delete(requestsControllers.removeRequest);
+
+// READ ALL REQUESTS BY A USER ... and CREATE A REQUEST
+// router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+router
+  .route("/:userID/requests")
+  .get(requestsControllers.getUserRequests)
+  .post(requestsControllers.createRequest);
+
+module.exports = router;
+
 // CREATE, UPDATE, DELETE REQUESTS
 // needs to be more specific so it references both userID and request ID ("/userID/:userID/:requestID")
 // router
@@ -13,23 +37,3 @@ const router = require("express").Router();
 //   .get(requestsControllers.getUserRequests)
 //   .put(requestsControllers.updateUserRequests)
 //   .delete(requestsControllers.removeUserRequest);
-
-// FOR REQUEST FORM
-// READ REQUESTS, CREATE (NEW) REQUEST
-// change the route so it's .route("/:userID")
-router
-  .route("/")
-  .get(requestsControllers.findAllRequests)
-  .post(requestsControllers.createRequest);
-
-// DASHBOARD
-router
-  .route("/:id")
-  .get(requestsControllers.findByRequestId)
-  .put(requestsControllers.updateRequest)
-  .delete(requestsControllers.removeRequest);
-
-// DASHBOARD - FIND ALL USER REQUESTS
-router.route("/userID/:userID").get(requestsControllers.getUserRequests);
-
-module.exports = router;

@@ -9,39 +9,43 @@ const db = require("../models");
 
 // (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
-  // test: function(req, res) {
-  //   console.log("test*");
-  //   res.status(200);
-  // },
   // READ requests from the Request Collection
   findAllRequests: function(req, res) {
-    console.log("db.Request", db.Request);
-    db.Request.find(req.query)
+    db.Request.find()
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // READ a specific request
   findByRequestId: function(req, res) {
-    db.Request.findById(req.params.id)
+    // This actually can be called requestID b/c of .findbyId
+    db.Request.findById(req.params.requestID)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // CREATE request using Request Form
   createRequest: function(req, res) {
+    console.log("db.Request", req.body);
     db.Request.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   // UPDATE request made
   updateRequest: function(req, res) {
-    db.Request.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+    // console.log("req.params.requestID", req.params.requestID);
+    // console.log("req.body", req.body);
+    db.Request.findOneAndUpdate({ _id: req.params.requestID }, req.body, {
+      upsert: true
+    })
+      .then(dbModel => {
+        // console.log("dbModel", dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
   // DELETE request
   removeRequest: function(req, res) {
-    db.Request.findById({ _id: req.params.id })
+    db.Request.findById({ _id: req.params.requestID })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

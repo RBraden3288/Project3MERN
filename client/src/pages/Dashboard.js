@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 // import the props from Signup '../pages/Signup';
 import {
   Container,
@@ -10,19 +11,27 @@ import {
   CustomInput,
   Badge
 } from "reactstrap";
+import "../index.css";
 import UserNavBar from "../components/UserNavBar";
 import OpenRequestsModal from "../components/OpenRequestsModal";
 import API from "../utils/API";
 import axios from "axios";
 import auth from "../utils/auth";
 
-var styles = {
+var bodyStyles = {
+  fontFamily:
+    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
+  color: "#A9A9A9"
+}
+var jumbotronStyles = {
   backgroundImage: 'url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg")',
   backgroundSize: "cover",
   color: "#FFFFFF",
   textAlign: "right",
-  fontFamily:
-    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+};
+var headerStyles = {
+  fontSize: "18px",
+  color: "#FF3b3F"
 };
 
 class Dashboard extends Component {
@@ -71,39 +80,33 @@ class Dashboard extends Component {
   //     ]
   //   })
   // }
+
+  //LOAD USERS from utils/API
+  // loadUser = () => {
+  //   API.getUser()
+  //   .then(res => this.setState({ users: res.data }))
+  //   .catch(err => console.log(err));
+  // }
+  //LOAD REQUESTS from utils/API
+  loadUserRequests = () => {
+    API.getRequest()
+      .then(res => this.setState({ requests: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  // Mount users and requests
+  componentDidMount() {
+    // this.loadUser();
+    this.loadUserRequests();
+  }
   render() {
-    var headerStyles = {
-      fontFamily:
-        "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
-      fontSize: "18px"
-    };
-
-    // //LOAD USERS from utils/API
-    // loadUser = () => {
-    //   API.getUser()
-    //   .then(res => this.setState({ users: res.data }))
-    //   .catch(err => console.log(err));
-    // }
-    // //LOAD REQUESTS from utils/API
-    // loadUserRequests = () => {
-    //   API.getRequest()
-    //   .then(res => this.setState({ requests: res.data }))
-    //   .catch(err => console.log(err));
-    // }
-
-    //Mount users and requests
-    // componentDidMount() {
-    //   this.loadUser();
-    //   this.loadUserRequests();
-    // }
 
     return (
-      <div>
+      <div className="dashboard-container" style={bodyStyles}>
         <UserNavBar />
-        <Jumbotron fluid style={styles}>
+        <Jumbotron fluid style={jumbotronStyles}>
           <Container fluid>
             <h1 className="display-3">Welcome, {this.props.user.firstName}</h1>
-            {/* <h1 className="display-3">Welcome, {this.state.user.firstName}</h1> */}
             <p className="lead">
               Here you can view open requests and change your availability.
             </p>
@@ -114,7 +117,7 @@ class Dashboard extends Component {
             <Col
               xs="6"
               sm="4"
-              style={{ backgroundColor: "#DCC7AA", borderRadius: "5px" }}
+              style={{ backgroundColor: "#CAEBF2", borderRadius: "5px", height: "auto" }}
             >
               <FormGroup>
                 <Label for="exampleCheckbox" style={headerStyles}>
@@ -138,7 +141,11 @@ class Dashboard extends Component {
               <Label style={headerStyles}>Open Requests</Label>
               {/* map through requests */}
               {this.state.requests.length === 0 && (
-                <p>There are no open requests.</p>
+                <p>There are no open requests.
+                <br />Have a favor?
+                  <Link to={"/requestform"}>
+                    Grab a neighbor.
+                    </Link></p>
               )}
               {this.state.requests.length > 0 &&
                 this.state.requests.map(request => (

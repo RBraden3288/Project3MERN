@@ -37,6 +37,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
+  // CREATE a request
+  // createRequest: function(req, res) {
+  //   console.log("db.User", req.params);
+  //   db.User.create(req.params)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // }
 
   // Not sure if we'll need the following functions
   // These would be to delete a user or update their information
