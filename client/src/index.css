@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
 
+.form-container,
 .index {
   color: #6b7a8f;
   /* font-size: ; */
@@ -23,9 +24,16 @@
 }
 
 .dashboard-header2 {
-  background-color: rgb(255, 59, 63, 0.1)
+  background-color: rgb(255, 59, 63, 0.1);
 }
 
+.request-header2 {
+  background-color: rgb(255, 59, 63, 0.1);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form-container,
 .dashboard-container {
   background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0,0,0,.5)),
    url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg");
@@ -37,6 +45,8 @@
 .availability-card {
   width: 800px
 }
+
+.request-div,
 .dashboard-cards {
   background-color: rgb(202, 235, 242, 0.8); 
   border-radius: 5px; 
@@ -44,4 +54,8 @@
   width: auto;
   margin: 2%;
   padding: 1%
+}
+
+.request-div {
+  font-size: 14px
 }

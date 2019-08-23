@@ -100,7 +100,7 @@ class Dashboard extends Component {
               )}
               {this.state.requests.length > 0 &&
                 this.state.requests.map(request => (
-                  <OpenRequestDiv request={request} />
+                  <OpenRequestDiv request={request}/>
                   // <OpenRequestsModal request={request} />
                 ))}
             </Col>
