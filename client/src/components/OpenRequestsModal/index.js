@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import API from '../../utils/API';
 import {
-    Button,
     Modal,
     ModalHeader,
     ModalBody,
     ModalFooter
 } from 'reactstrap';
+import './openrequest-style.css';
 
 class OpenRequestsModal extends React.Component {
     constructor(props) {
@@ -15,7 +16,18 @@ class OpenRequestsModal extends React.Component {
             requests: []
         };
 
-        this.toggle = this.toggle.bind(this);
+        // this.handleUserRequests = this.handleUserRequests.bind(this);
+        // this.toggle = this.toggle.bind(this);
+    }
+
+    loadUserRequests() {
+        console.log("load user requests");
+        const request = {
+            request: this.state.message
+        }
+
+        API.getUserRequests()
+
     }
 
     toggle() {
@@ -27,7 +39,7 @@ class OpenRequestsModal extends React.Component {
     render() {
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         var btnStyles = {
-            "backgroundColor": "#4ABDAC",
+            "color": "#A9A9A9",
             "borderRadius": "5px",
             "height": "100px"
         };
@@ -35,16 +47,16 @@ class OpenRequestsModal extends React.Component {
         return (
             // if there are no openRequests RequestResults, use the noRequests span. If there are use the modal.
             <div>
-                <button style={btnStyles} onClick={this.toggle}>{this.props.buttonLabel} {this.state.requestTitle} {this.state.startDate} to {this.state.endDate}</button>
+                <button style={btnStyles} onClick={this.toggle}>{this.props.buttonLabel} {this.props.requestTitle} {this.state.startDate} to {this.state.endDate}</button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle} close={closeBtn}>{this.props.request.title}</ModalHeader>
-                    <ModalBody>
+                    <ModalBody className='modal-body'>
                         {this.props.request}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Update</Button>{' '}
-                        <Button color="danger" onClick={this.toggle}>Delete</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Close</Button>
+                        <button className="modal-button" onClick={this.toggle}>Update</button>{' '}
+                        <button className="modal-button" onClick={this.toggle}>Delete</button>{' '}
+                        <button className="modal-button modal-button-search" onClick={this.toggle}>Search Neighbors</button>
                     </ModalFooter>
                 </Modal>
             </div>

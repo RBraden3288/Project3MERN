@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import API from "../utils/API";
 import UserNavBar from "../components/UserNavBar";
 import {
   FormGroup,
@@ -14,28 +11,6 @@ import {
   FormText
 } from "reactstrap";
 import "../index.css";
-
-var containerStyles = {
-  margin: "100px",
-  backgroundColor: "#CAEBF2",
-  color: "#A9A9A9",
-  fontFamily:
-    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
-};
-
-var headerStyles = {
-  fontFamily:
-    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
-  color: "#FF383F",
-  fontSize: "24px",
-  float: "right",
-  letterSpacing: "3px",
-  margin: "10px"
-};
-var formContainer = {
-  backgroundColor: "#CAEBF2",
-  margin: "10px"
-};
 
 class Form extends React.Component {
   constructor(props) {
@@ -108,20 +83,20 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div styles={containerStyles}>
+      <div className='form-container'>
         <UserNavBar />
         <br />
-        <Container>
+        <Container className='request-div'>
           <Row>
-            <div style={headerStyles}>SUBMIT A REQUEST</div>
+            <div className='display-3'>SUBMIT A REQUEST</div>
           </Row>
           <br />
 
-          <div styles={formContainer}>
+          <div >
             <form onSubmit={this.handleSubmit}>
               <Row>
                 <Col xs="6" sm="4">
-                  <Label>
+                  <Label className='request-header2'>
                     Create a request request
                     <Input
                       type="text"
@@ -132,11 +107,9 @@ class Form extends React.Component {
                     />
                   </Label>
                 </Col>
-              </Row>
-              <Row>
                 <Col xs="6" sm="4">
                   <FormGroup>
-                    <Label>
+                    <Label className='request-header2'>
                       Start Date
                       <Input
                         type="date"
@@ -149,11 +122,9 @@ class Form extends React.Component {
                     </Label>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col xs="6" sm="4">
                   <FormGroup>
-                    <Label>
+                    <Label className='request-header2'>
                       End Date
                       <Input
                         type="date"
@@ -171,7 +142,7 @@ class Form extends React.Component {
               <Row>
                 <Col xs="6" />
               </Row>
-              <Row>Indoor tasks</Row>
+              <Row className='request-header2'>Indoor tasks</Row>
               <Row>
                 <Col>
                   <FormGroup check>
@@ -233,7 +204,7 @@ class Form extends React.Component {
 
               <br />
 
-              <Row>Outdoor tasks</Row>
+              <Row className='request-header2'>Outdoor tasks</Row>
               <Row>
                 <Col>
                   <FormGroup check>
@@ -295,11 +266,11 @@ class Form extends React.Component {
 
               <br />
 
+              <Row className='request-header2'>Vehicle Tasks</Row>
               <Row>
                 <FormText color="muted">
                   Avoid street-cleaning &#47; 72&#130;hour time enforcement
                   tickets.
-                  <br />
                   Appropriate license required!
                 </FormText>
               </Row>
@@ -365,7 +336,7 @@ class Form extends React.Component {
                 </Col>
               </Row>
 
-              <Row>Pet chores </Row>
+              <Row className='request-header2'>Pet chores </Row>
               <Row>
                 <FormText color="muted">
                   Because our canine companions require a little more attention

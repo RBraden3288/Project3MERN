@@ -7,7 +7,6 @@ const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
-// (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
   // Find all users in our DB (client, attendant)
   findAllUsers: function(req, res) {
@@ -64,26 +63,4 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   }
-
-  // CREATE a request
-  // createRequest: function(req, res) {
-  //   console.log("db.User", req.params);
-  //   db.User.create(req.params)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
-
-  // Not sure if we'll need the following functions
-  // These would be to delete a user or update their information
-  // updateUser: function(req, res) {
-  //   db.Users.findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // removeUser: function(req, res) {
-  //   db.Users.findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
 };
