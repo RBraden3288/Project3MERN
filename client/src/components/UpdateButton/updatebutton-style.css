@@ -1,0 +1,9 @@
+.req-btn {
+    margin: auto;
+    font-size: 10px;
+    width: 85%;
+    border-radius: 4px;
+    background-color: rgb(202, 235, 242, 0.8);
+    color: #6b7a8f;
+    text-align: center;
+}

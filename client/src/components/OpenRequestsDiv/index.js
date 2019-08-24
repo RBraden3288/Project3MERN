@@ -1,5 +1,6 @@
 import React from 'react';
 import API from '../../utils/API';
+import DeleteButton from '../DeleteButton'
 import {
     Col,
     Row,
@@ -52,9 +53,7 @@ export default class OpenRequestsDiv extends React.Component {
                             </button>
                         </Col>
                         <Col>
-                            <button className="req-btn">
-                                delete request
-                            </button>
+                            <DeleteButton />
                         </Col>
                         <Col>
                             <button className="req-btn">

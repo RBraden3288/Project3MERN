@@ -29,8 +29,8 @@
 
 .request-header2 {
   background-color: rgb(255, 59, 63, 0.1);
-  font-weight: bold;
   text-transform: uppercase;
+  padding-left: 1%;
 }
 
 .form-container,

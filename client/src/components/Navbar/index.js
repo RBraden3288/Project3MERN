@@ -33,10 +33,13 @@ export default class NavigationBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Neighbor Favor</NavbarBrand>
+          <NavbarBrand className='label' href="/">Neighbor Favor</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/signup">Create an account!</NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink href="/about">About!</NavLink>
               </NavItem>
