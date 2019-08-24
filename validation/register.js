@@ -55,7 +55,6 @@ module.exports = function validateRegisterInput(data) {
     errors.passowrd2 = "Passwords must match";
   }
 
-  // need to put back for neighborhood
   // if (!Validator.equals(data.neighborhood, "Select")) {
   //     errors.neighborhood = "Neighborhood is required";
   // }

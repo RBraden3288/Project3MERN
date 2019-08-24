@@ -4,19 +4,8 @@ require("dotenv").config();
 var mongoose = require("mongoose");
 const db = require("../models");
 
-// require bcrypt to hash passwords
-// Use bcrypt to hash passwords
-// const bcrypt = require("bcrypt");
-// const saltRounds = 10;
-// const myPlaintextPassword = "s0//P4$$w0rD";
-
-// RACHEL >> Might need to put the URI key in here, too.
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
-// var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-
-// Need to get the hashing to work for seeded data
-// bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
 const usersSeed = [
   {
     firstName: "Srirachel",
@@ -77,4 +66,3 @@ db.User.deleteMany({})
     console.error(err);
     process.exit(1);
   });
-// });

@@ -4,7 +4,6 @@ require("dotenv").config();
 var mongoose = require("mongoose");
 const db = require("../models");
 
-// RACHEL >> Might need to put the URI key in here, too.
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const requestsSeed = [
@@ -21,6 +20,34 @@ const requestsSeed = [
       mail: false,
       packages: false,
       yardwork: true,
+      trash: false,
+      moveCar: false,
+      moveMC: false,
+      moveMP: false,
+      moveOS: true,
+      playCat: false,
+      feedCat: false,
+      litter: false,
+      feedCritter: false,
+      cleanCritTank: false,
+      feedFish: false,
+      cleanFishTank: false
+    },
+    date: Date()
+  },
+  {
+    userID: "5d508c2b183daa32fd4b8706",
+    requestTitle: "Arubaaaa",
+    startDate: "09/01/2019",
+    endDate: "09/11/2019",
+    tasks: {
+      dust: false,
+      vaccuum: true,
+      temp: false,
+      timers: false,
+      mail: true,
+      packages: true,
+      yardwork: false,
       trash: false,
       moveCar: false,
       moveMC: false,

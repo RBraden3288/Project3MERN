@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Update to include residence type, security.
 const usersSchema = new Schema({
+  requestID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Request"
+  },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true },
-  neighborhood: String,
+  neighborhood: { type: String, required: true },
   residenceType: String,
   entryType: String,
   bio: String,

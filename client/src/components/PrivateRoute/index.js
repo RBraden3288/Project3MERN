@@ -6,8 +6,6 @@ const PrivateRoute = ({ component: Component, render, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      // var test = auth.getJwt();
-      // console.log(auth.getJwt())
       auth.getJwt() ? (
         render ? (
           render(props)
@@ -27,21 +25,3 @@ const PrivateRoute = ({ component: Component, render, ...rest }) => (
 );
 
 export default PrivateRoute;
-
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         auth.getToken() !== null ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: "/signup",
-//               state: { from: props.location }
-//             }}
-//           />
-//         )
-//       }
-//     />
-// );

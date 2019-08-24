@@ -1,28 +1,21 @@
 import React, { Component } from "react";
-// import the props from Signup '../pages/Signup';
-import {
-  Container,
-  Col,
-  Row,
-  Jumbotron,
-  FormGroup,
-  Label,
-  CustomInput,
-  Badge
-} from "reactstrap";
+import { Link } from "react-router-dom";
+import { Container, Col, Row, FormGroup, Label, CustomInput } from "reactstrap";
+import "../index.css";
 import UserNavBar from "../components/UserNavBar";
 import OpenRequestsModal from "../components/OpenRequestsModal";
+import OpenRequestDiv from "../components/OpenRequestsDiv";
 import API from "../utils/API";
-import axios from "axios";
-import auth from "../utils/auth";
 
-var styles = {
-  backgroundImage: 'url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg")',
-  backgroundSize: "cover",
-  color: "#FFFFFF",
-  textAlign: "right",
+var bodyStyles = {
   fontFamily:
-    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+    "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
+  color: "#6b7a8f"
+};
+var headerStyles = {
+  fontSize: "24px",
+  color: "#FF3b3F",
+  textAlign: "right"
 };
 
 class Dashboard extends Component {
@@ -31,122 +24,79 @@ class Dashboard extends Component {
     this.state = {
       requests: []
     };
+    console.log(this.props);
   }
 
-  // componentDidMount() {
-  //   // axios.get("/").then(res => console.log(res.data));
+  loadUserRequests = () => {
+    console.log(this.props.user.id);
+    var userID = this.props.user.id;
+    console.log(userID);
+    API.getUserRequests(userID)
+      .then(res => {
+        console.log("dash res", res.data);
+        this.setState({ requests: res.data });
+      })
+      .catch(err => console.log(err));
+  };
 
-  //   var token = auth.getJwt();
-
-  //   if (!token) {
-  //     console.log("User not logged in");
-  //     window.location.href = "/";
-  //   } else if (token) {
-  //     // console.log("Here are my props:", this.props);
-  //     auth.setAuthHeader(token);
-  //     // console.log(token.exp);
-  //     var currentUser = auth.getCurrentUser();
-  //     console.log("the current user is", currentUser);
-
-  //     this.setState({ user: this.currentUser });
-  //     // console.log(this.state);
-  //   } else if (currentUser.exp < Date.now() / 1000 || token === null) {
-  //     auth.logOutUser();
-  //   } else {
-  //     console.log("User is not logged in");
-  //   }
-
-  //   // window.location.href = "/dashboard/:id";
-  //   // this.props.history.push("/about");
-  // }
-
-  // componentDidMount(){
-  //   // axios.get('/api/requests/' + passportuserID).then((result) => {
-  //   //   this.setState(result);
-  //   // })
-  //   this.setState({ requests: [
-  //       {
-  //         ...response, array of req objects
-  //       }
-  //     ]
-  //   })
-  // }
+  // Mount users and requests
+  componentDidMount() {
+    this.loadUserRequests();
+  }
   render() {
-    var headerStyles = {
-      fontFamily:
-        "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
-      fontSize: "18px"
-    };
-
-    //LOAD USERS from utils/API
-    // loadUser = () => {
-    //   API.getUser()
-    //   .then(res => this.setState({ users: res.data }))
-    //   .catch(err => console.log(err));
-    // }
-    //LOAD REQUESTS from utils/API
-    loadUserRequests = () => {
-      API.getRequest()
-        .then(res => this.setState({ requests: res.data }))
-        .catch(err => console.log(err));
-    };
-
-    // Mount users and requests
-    // componentDidMount() {
-    //   this.loadUser();
-    //   this.loadUserRequests();
-    // }
-
     return (
-      <div>
-        <UserNavBar />
-        <Jumbotron fluid style={styles}>
+      <div className="dashboard-container" style={bodyStyles}>
+        <div className="layer">
+          <UserNavBar />
           <Container fluid>
             <h1 className="display-3">Welcome, {this.props.user.firstName}</h1>
-            {/* <h1 className="display-3">Welcome, {this.state.user.firstName}</h1> */}
-            <p className="lead">
+            <p className="lead dashboard-header2">
               Here you can view open requests and change your availability.
             </p>
           </Container>
-        </Jumbotron>
-        <Container>
-          <Row>
-            <Col
-              xs="6"
-              sm="4"
-              style={{ backgroundColor: "#DCC7AA", borderRadius: "5px" }}
-            >
-              <FormGroup>
-                <Label for="exampleCheckbox" style={headerStyles}>
-                  Neighborly Availability
-                </Label>
-                <div>
+          <Container>
+            <Row>
+              <Col className="dashboard-cards availability-card">
+                <FormGroup>
+                  <Label for="exampleCheckbox" style={headerStyles}>
+                    Neighborly Availability
+                  </Label>
+                  <div>
+                    <p className="dashboard-header2">
+                      Let your neighbors know you're available for favors by
+                      turning the switch below on.
+                    </p>
+                    <CustomInput
+                      type="switch"
+                      id="exampleCustomSwitch"
+                      name="customSwitch"
+                      label="Be a good neighbor"
+                    />
+                  </div>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="dashboard-cards">
+                <Label style={headerStyles}>Open Requests</Label>
+                {/* map through requests */}
+                {this.state.requests.length === 0 && (
                   <p>
-                    Let your neighbors know you're available for favors by
-                    turning the switch below on.
+                    There are no open requests.
+                    <br />
+                    Have a favor?
+                    <Link to={"/requestform"}>Grab a neighbor.</Link>
                   </p>
-                  <CustomInput
-                    type="switch"
-                    id="exampleCustomSwitch"
-                    name="customSwitch"
-                    label="Be a good neighbor"
-                  />
-                </div>
-              </FormGroup>
-            </Col>
-            <Col xs="auto">
-              <Label style={headerStyles}>Open Requests</Label>
-              {/* map through requests */}
-              {this.state.requests.length === 0 && (
-                <p>There are no open requests.</p>
-              )}
-              {this.state.requests.length > 0 &&
-                this.state.requests.map(request => (
-                  <OpenRequestsModal request={request} />
-                ))}
-            </Col>
-          </Row>
-        </Container>
+                )}
+                {this.state.requests.length > 0 &&
+                  this.state.requests.map(request => (
+                    <OpenRequestDiv request={request} />
+                    // <OpenRequestsModal request={request} />
+                  ))}
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }

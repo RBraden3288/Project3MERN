@@ -1,34 +1,25 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import {
-  Toast,
-  ToastBody,
-  ToastHeader,
   Container,
   Row,
   Col,
   Form,
   FormText,
-  FormGroup,
   Input,
   Label,
   Button
 } from "reactstrap";
 import "./style.css";
-// import { userInfo } from "os";
 import API from "../../utils/API";
-import axios from "axios";
 
 class SignUpGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      // newUser: {
-      // this will hold an array of objects identifying the user
+
       firstName: "",
       lastName: "",
-      //   email: this.props.location.state.email,
       neighborhood: "",
       residence: "",
       entryway: "",
@@ -50,7 +41,6 @@ class SignUpGrid extends React.Component {
 
   signup = userInfo => {
     return API.registerUser(userInfo).then(user => {
-      // return axios.post("/api/auth/register", userInfo).then(user => {
       console.log("User successfully registered", user);
       window.location.href = "/";
     });
@@ -81,34 +71,12 @@ class SignUpGrid extends React.Component {
       const errors = err;
       this.setState({ errors: errors });
     });
-
-    // submit to backend to save might send you a token instead
-    // this should come from App.js
-    // this.props.logIn(<user obj from mongo>);
-
-    // componentWillMount () {
-    //     const { emailInput } = this.props.location.state
-    //     console.log(emailInput);
-    // }
-
-    // submit to backend to save might send you a token instead
-    // this should come from App.js
-    // this.props.logIn(<user obj from mongo>);
-
-    //send an http post request to the backend
-    //a new object that contains the values coming from the form
-
-    //path using server.js localhost path?
-    //url??:URL PATH END POINT THAT CONTAINS INCOMING POST REQUEST  /dashboard/ + newUserSignup??
-    // axios.post('http://localhost:3001/dashboard', newUserSignup)
-    //     .then(res => console.log(res.data));
   };
 
   render() {
     return (
       <div>
         <Container>
-          {/* <form onSubmit={this.handleSignUp}> */}
           <Form>
             <Row>
               <Col xs="6">
@@ -294,7 +262,7 @@ class SignUpGrid extends React.Component {
                     <h1>{this.state.errors.password}</h1>
                   </div>
                 )}
-                {/* {this.state.errors && (<div> <h1>{this.state.errors.email}</h1> <br> <h1> {this.state.errors.password} </h1>)} */}
+
                 <Button outline color="success" onClick={this.handleSignUp}>
                   Create my account!
                 </Button>
@@ -308,51 +276,3 @@ class SignUpGrid extends React.Component {
 }
 
 export default SignUpGrid;
-
-{
-  /* <Toast className="signup_toast">
-          <ToastHeader>Create your account!</ToastHeader>
-          <ToastBody>
-            <Form>
-              <FormGroup check>
-                <Row>
-                  <Col>
-                    <Label>
-                      Email
-                      <Input
-                        type="text"
-                        name="email"
-                        id="exampleEmail"
-                        placeholder="johnsmith@email.com"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                    </Label>
-                  </Col>
-                  {this.state.errors.email && (
-                    // <h1>{this.state.errors.email}</h1>
-                    <h1>{this.state.errors}</h1>
-                  )}
-                </Row>
-                <Row>
-                  <Col>
-                    <Button outline color="success">
-                      {/* <Link
-                    to={{
-                      pathname: "/signup",
-                      state: {
-                        emailInput: props.email
-                      }
-                    }}
-                  > */
-}
-//               Submit
-//               {/* </Link> */}
-//               {/* onSubmit={props.handleSubmit} */}
-//             </Button>
-//           </Col>
-//         </Row>
-//       </FormGroup>
-//     </Form>
-//   </ToastBody>
-// </Toast>

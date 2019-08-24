@@ -1,0 +1,43 @@
+.requests-container{
+    margin: 2%;
+    padding: 1%;
+    border-radius: 5px;
+    background-color: rgb(255, 59, 63, 0.1)
+}
+
+.request-header {
+    background-color: rgb(255, 255, 255, 0.5);
+
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-container {
+    margin: auto;
+    width: 400px;
+    text-align: center
+}
+
+.req-btn {
+    margin: auto;
+    font-size: 10px;
+    width: 85%;
+    border-radius: 4px;
+    background-color: rgb(202, 235, 242, 0.8);
+    color: #6b7a8f;
+    text-align: center;
+}
+
+.req-btn:hover {
+    background-color: #ffffff
+}
+
+.request-body {
+    text-align: left;
+    font-size: 14px;
+    padding-left: 5%;
+    padding-right: 5%
+}

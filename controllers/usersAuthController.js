@@ -31,6 +31,10 @@ module.exports = {
         return res.status(400).json({ email: "Email already exists" });
       } else {
         const newUser = new db.User({
+          request: {
+            type: Schema.Types.ObjectId,
+            ref: "Request"
+          },
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,
@@ -41,7 +45,6 @@ module.exports = {
           bio: req.body.bio,
           skills: req.body.skills,
           photoUrl: req.body.photo_url
-          // input all the other things to register about the user as well?
         });
 
         // hash password before save to db
@@ -55,8 +58,6 @@ module.exports = {
               .catch(err => console.log(err));
           });
         });
-
-        // return res.status(200).json("User successfully created!");
       }
     });
   },
@@ -98,8 +99,6 @@ module.exports = {
                 .catch(err => console.log(err));
             }
           );
-
-          //   return res.status(200).send("User successfully logged in!");
         } else {
           return res.status(400).json({ password: "Password incorrect" });
         }

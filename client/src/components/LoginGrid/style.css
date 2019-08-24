@@ -1,7 +1,10 @@
 .toast-container {
-    position: relative;
+    position: absolute;
+    z-index: 1;
+    float: left;
     width: 600px;
-    bottom: 400px;
+    top: 35%;
+    bottom: 25%;
 }
 
 .login_toast {

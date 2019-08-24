@@ -1,31 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NavigationBar from "../components/Navbar/";
 import SignUpGrid from "../components/SignupGrid";
 import auth from "../utils/auth";
 
 import "../index.css";
 
-import {
-  Container,
-  Col,
-  Row,
-  Label,
-  Input,
-  Button,
-  FormText
-} from "reactstrap";
-import { callbackify } from "util";
-
-// const Signup = props => {
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
-
-    //bind the methods to "this"
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -46,22 +30,8 @@ class Signup extends Component {
 
       // this.setState(currentUser);
       window.location.href = "/dashboard/:id";
-      // this.props.history.push("/about");
     }
   }
-
-  //event handlers and functions to handle form submission
-  // handleChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
-
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   console.log(`Form submitted: `, this.state);
-  // };
 
   render() {
     return (

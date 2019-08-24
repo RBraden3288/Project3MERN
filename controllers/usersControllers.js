@@ -1,13 +1,11 @@
 // FILE BRINGING US CLOSER TO ORM
 // this file creates db queries based on the schema(s) in our models directory
-// May only use the portion to find all attendants / by their IDs + create them
 
 // ---------------- REQUIRE SCHEMAS (FROM MODELS)  ----------------
 const db = require("../models");
 
 // ---------------- CREATING ALL OF THE DB QUERIES  ----------------
 
-// (RACHEL) ACTION ITEM: Make sure all of this works
 module.exports = {
   // Find all users in our DB (client, attendant)
   findAllUsers: function(req, res) {
@@ -36,19 +34,33 @@ module.exports = {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  // CREATE a request
+  createRequest: function(req, res) {
+    const userId = req.params.id;
+    console.log("db.Request", req.body);
 
-  // Not sure if we'll need the following functions
-  // These would be to delete a user or update their information
-  // updateUser: function(req, res) {
-  //   db.Users.findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // removeUser: function(req, res) {
-  //   db.Users.findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
+    const requestData = req.body;
+
+    // Link user id to request
+    requestData.userID = userId;
+
+    db.Request.create(requestData)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err);
+      });
+  },
+  findByUserId: function(req, res) {
+    // req.params.userID
+    db.Request.find({ _id: req.params.id })
+      .populate("request")
+      .sort({ date: -1 })
+      .then(dbModel => {
+        console.log(dbModel);
+        res.json(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
+  }
 };

@@ -1,28 +1,14 @@
 import React from "react";
-import {
-  Container,
-  Media,
-  Col,
-  Row,
-  Button
-} from 'reactstrap';
-import axios from 'axios';
+import { Container, Media, Col, Row, Button } from "reactstrap";
 
 export default class RequestResults extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     // empty requests array
-     this.state = {
-       userRequests: []
-    }
+    this.state = {
+      userRequests: []
+    };
   }
-
-  //handle axios request
-  // componentDidMount() {
-  //   //axios request to BE for requests
-  //   axios.get('/api/requests/' + )
-  //   //set userRequests state with array of data
-  // };
 
   render() {
     return (
@@ -35,15 +21,9 @@ export default class RequestResults extends React.Component {
           </Col>
           <Col xs="6">
             <Media body>
-              <Media heading>
-                This will hold the first name of a response
-        </Media>
-              <Row>
-                This will hold their bio
-        </Row>
-              <Row>
-                This will hold their skills
-        </Row>
+              <Media heading>This will hold the first name of a response</Media>
+              <Row>This will hold their bio</Row>
+              <Row>This will hold their skills</Row>
             </Media>
           </Col>
           <Col xs="3">
@@ -51,6 +31,6 @@ export default class RequestResults extends React.Component {
           </Col>
         </Media>
       </Container>
-    )
+    );
   }
 }

@@ -1,37 +1,25 @@
-// ACTION ITEM: TEST & CONFIRM THAT THESE ROUTES ARE APPROPRIATE
-
 const requestsControllers = require("../../controllers/requestsControllers");
 const router = require("express").Router();
 
-// "/" is the equivalent of api/requests
+// NOTE: "/" is the equivalent of api/requests
 
-// DASHBOARD
-// GET ALL USER'S REQS
-router.route("/userID/:userID").get(requestsControllers.getUserRequests);
+// --------------------------- REQUEST FORM --------------------------
+// READ ALL REQUESTS
+router.route("/").get(requestsControllers.findAllRequests);
+// .post(requestsControllers.createRequest);
 
-// UPDATE, DELETE REQUESTS
+// ----------------------------- DASHBOARD ----------------------------
+// READ, UPDATE, AND DELETE A SINGLE REQUEST
 router
-  // IDEAL VERSION
-  // .route("/userID/:userID/:requestID")
-  // ESSENTIAL VERSION
-  .route("/userID/:requestID")
-  .put(requestsControllers.updateUserRequests)
-  .delete(requestsControllers.removeUserRequest);
+  // .route("/:id")
+  .route("/:userID/requests")
+  .get(requestsControllers.findByUserId);
 
-// FOR REQUEST FORM
-// READ REQUESTS --FOR TESTING (COMMENTED OUT),
-// CREATE (NEW) REQUEST
 router
-  .route("/:userID")
-  // .get(requestsControllers.findAllRequests)
-  .post(requestsControllers.createRequest);
-
-// router
-//   .route("/:id")
-//   .get(requestsControllers.findByRequestId)
-//   .put(requestsControllers.updateRequest)
-//   .delete(requestsControllers.removeRequest);
-
-// DASHBOARD
+  // .route("/:id")
+  .route("/:requestID")
+  .get(requestsControllers.findByRequestId)
+  .put(requestsControllers.updateRequest)
+  .delete(requestsControllers.removeRequest);
 
 module.exports = router;

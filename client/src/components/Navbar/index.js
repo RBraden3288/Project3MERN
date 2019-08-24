@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import {
   Collapse,
   Navbar,
@@ -27,6 +28,7 @@ export default class NavigationBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  
   render() {
     return (
       <div>

@@ -1,6 +1,59 @@
-/* WHAT IS THIS STYLING? */
+@import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
 
+.form-container,
 .index {
   color: #6b7a8f;
   /* font-size: ; */
+}
+
+.display-3 {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px #6b7a8f;
+}
+
+.Label {
+  color: #ff3b3f;
+}
+
+.lead {
+  margin-top: -35px;
+  color: #ffffff;
+}
+
+.dashboard-header2 {
+  background-color: rgb(255, 59, 63, 0.1);
+}
+
+.request-header2 {
+  background-color: rgb(255, 59, 63, 0.1);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form-container,
+.dashboard-container {
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5)),
+    url("https://i.ibb.co/5jbtrZN/IMG-7398.jpg");
+  position: relative;
+  text-align: center;
+  height: 800px;
+}
+
+.availability-card {
+  width: 800px;
+}
+
+.request-div,
+.dashboard-cards {
+  background-color: rgb(202, 235, 242, 0.8);
+  border-radius: 5px;
+  height: auto;
+  width: auto;
+  margin: 2%;
+  padding: 1%;
+}
+
+.request-div {
+  font-size: 14px;
 }
